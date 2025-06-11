@@ -1,0 +1,82 @@
+version: "3"
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:stable-otel
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/html:/var/www/html
+      - ./nginx/nginx/logs:/var/log/nginx
+    depends_on:
+      - api-gateway
+    environment:
+      - TZ=Asia/Seoul
+
+  api-gateway:
+    build:
+      context: ../apps/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Seoul
+      - AUTH_API_URL=http://auth-api:3001
+      - NOTIFICATION_API_URL=http://notification-api:3002
+      - API_URL=http://api:3003
+    depends_on:
+      - auth-api
+      - notification-api
+      - api
+
+  auth-api:
+    build:
+      context: ../apps/auth-api
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - TZ=Asia/Seoul
+
+  notification-api:
+    build:
+      context: ../apps/notification-api
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - TZ=Asia/Seoul
+
+  api:
+    build:
+      context: ../apps/api
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - TZ=Asia/Seoul
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    environment:
+      - TZ=Asia/Seoul
+    volumes:
+      - ./redis/data:/data
