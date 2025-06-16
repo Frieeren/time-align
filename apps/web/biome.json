@@ -1,4 +1,4 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"extends": ["./node_modules/@repo/biome-config/next.json"]
+	"extends": ["./node_modules/@time-align/biome-config/next.json"]
 }
