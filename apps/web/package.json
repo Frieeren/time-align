@@ -19,8 +19,6 @@
   },
   "devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@time-align/biome-config": "workspace:*",
-    "@time-align/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
