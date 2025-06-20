@@ -1,76 +1,184 @@
-import Image, { type ImageProps } from "next/image";
-import styles from "./page.module.css";
+"use client";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+import { useState } from "react";
+import { httpClient } from "../shared/api/http";
+import { BadRequestError, InternetServerError, NotFoundError } from "../shared/exception/APIError";
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+interface TestResponse {
+  message: string;
+  data: {
+    id: number;
+    name: string;
+    timestamp: string;
+  };
+}
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [result, setResult] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>("");
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image className={styles.logo} src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  const handleTest = async (type: string) => {
+    setLoading(true);
+    setError("");
+    setResult("");
+
+    try {
+      switch (type) {
+        case "get": {
+          const response = await httpClient<TestResponse>({
+            url: "/api/test",
+            method: "GET",
+            routes: true,
+          });
+          setResult(JSON.stringify(response, null, 2));
+          break;
+        }
+        case "post": {
+          const response = await httpClient<TestResponse>({
+            url: "/api/test",
+            method: "POST",
+            data: { name: "New Test Item" },
+            routes: true,
+          });
+          setResult(JSON.stringify(response, null, 2));
+          break;
+        }
+        case "delete": {
+          await httpClient({
+            url: "/api/test",
+            method: "DELETE",
+            routes: true,
+          });
+          setResult("Successfully deleted (204 No Content)");
+          break;
+        }
+        case "timeout": {
+          const response = await httpClient<TestResponse>({
+            url: "/api/test",
+            method: "GET",
+            params: { delay: "60000" }, // 5초 지연
+            routes: true,
+          });
+          setResult(JSON.stringify(response, null, 2));
+          break;
+        }
+        case "error400": {
+          await httpClient({
+            url: "/api/test/error",
+            method: "GET",
+            params: { status: "400" },
+            routes: true,
+          });
+          break;
+        }
+        case "error404": {
+          await httpClient({
+            url: "/api/test/error",
+            method: "GET",
+            params: { status: "404" },
+            routes: true,
+          });
+          break;
+        }
+        case "error500": {
+          await httpClient({
+            url: "/api/test/error",
+            method: "GET",
+            params: { status: "500" },
+            routes: true,
+          });
+          break;
+        }
+      }
+    } catch (err) {
+      if (err instanceof BadRequestError) {
+        setError(`Bad Request Error: ${err.message}`);
+      } else if (err instanceof NotFoundError) {
+        setError(`Not Found Error: ${err.message}`);
+      } else if (err instanceof InternetServerError) {
+        setError(`Server Error: ${err.message}`);
+      } else if (err instanceof Error) {
+        setError(`Error: ${err.message}`);
+      } else {
+        setError("Unknown error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">API Test Page</h1>
+
+      <div className="space-x-2 mb-4">
+        <button
+          type="button"
+          onClick={() => handleTest("get")}
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+          disabled={loading}
         >
-          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-          Examples
-        </a>
-        <a href="https://turborepo.com?utm_source=create-turbo" target="_blank" rel="noopener noreferrer">
-          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-          Go to turborepo.com →
-        </a>
-      </footer>
+          GET Test
+        </button>
+        <button
+          type="button"
+          onClick={() => handleTest("post")}
+          className="px-4 py-2 bg-green-500 text-white rounded"
+          disabled={loading}
+        >
+          POST Test
+        </button>
+        <button
+          type="button"
+          onClick={() => handleTest("delete")}
+          className="px-4 py-2 bg-red-500 text-white rounded"
+          disabled={loading}
+        >
+          DELETE Test
+        </button>
+        <button
+          type="button"
+          onClick={() => handleTest("timeout")}
+          className="px-4 py-2 bg-yellow-500 text-white rounded"
+          disabled={loading}
+        >
+          Timeout Test
+        </button>
+      </div>
+
+      <div className="space-x-2 mb-4">
+        <button
+          type="button"
+          onClick={() => handleTest("error400")}
+          className="px-4 py-2 bg-purple-500 text-white rounded"
+          disabled={loading}
+        >
+          400 Error
+        </button>
+        <button
+          type="button"
+          onClick={() => handleTest("error404")}
+          className="px-4 py-2 bg-indigo-500 text-white rounded"
+          disabled={loading}
+        >
+          404 Error
+        </button>
+        <button
+          type="button"
+          onClick={() => handleTest("error500")}
+          className="px-4 py-2 bg-pink-500 text-white rounded"
+          disabled={loading}
+        >
+          500 Error
+        </button>
+      </div>
+
+      {loading && <div className="text-gray-500">Loading...</div>}
+
+      {error && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded">{error}</div>}
+
+      {result && <pre className="mt-4 p-4 bg-gray-100 rounded overflow-auto">{result}</pre>}
     </div>
   );
 }

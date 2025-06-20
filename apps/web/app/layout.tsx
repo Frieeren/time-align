@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import RQProvider from "./shared/provider/RQProvider";
+import RQProvider from "../shared/provider/RQProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
