@@ -7,6 +7,7 @@ import { UsersModule } from "./users/users.module";
 import { AuthModule } from "./auth/auth.module";
 import appConfig from "./config/app.config";
 import dbConfig from "./config/db.config";
+import { User } from "./entities/user.entity";
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import dbConfig from "./config/db.config";
           username: configService.get<string>("database.username"),
           password: configService.get<string>("database.password"),
           database: configService.get<string>("database.database"),
-          entities: [`${__dirname}/**/*.entity{.ts,.js}`],
+          entities: [User],
           synchronize: configService.get<string>("app.env") === "development",
           logging: configService.get<string>("app.env") === "development",
         };
