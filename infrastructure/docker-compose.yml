@@ -20,6 +20,8 @@ services:
     build:
       context: ../apps/api-gateway
       dockerfile: Dockerfile
+      args:
+        APP_NAME: api-gateway
     ports:
       - "3000:3000"
     environment:
@@ -34,17 +36,28 @@ services:
 
   auth-api:
     build:
-      context: ../apps/auth-api
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: infrastructure/Dockerfile.api
+      args:
+        APP_NAME: auth-api
+    depends_on:
+      - db
     ports:
       - "3001:3001"
     environment:
       - TZ=Asia/Seoul
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   notification-api:
     build:
-      context: ../apps/notification-api
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: infrastructure/Dockerfile.api
+      args:
+        APP_NAME: notification-api
     ports:
       - "3002:3002"
     environment:
@@ -52,8 +65,10 @@ services:
 
   api:
     build:
-      context: ../apps/api
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: infrastructure/Dockerfile.api
+      args:
+        APP_NAME: api
     ports:
       - "3003:3003"
     environment:
