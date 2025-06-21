@@ -36,7 +36,7 @@ export class AuthService {
       providerId: oauthData.providerId,
     });
 
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, name: user.name };
 
     return {
       user: {
