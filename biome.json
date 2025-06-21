@@ -53,12 +53,17 @@
   },
   "overrides": [
     {
-      "include": ["**/*.controller.ts", "**/*.service.ts"],
+      "include": ["**/*.controller.ts", "**/*.service.ts", "**/*.module.ts", "**/*.entity.ts"],
       "linter": {
         "rules": {
           "style": {
             "useImportType": "off"
           }
+        }
+      },
+      "javascript": {
+        "parser": {
+          "unsafeParameterDecoratorsEnabled": true
         }
       }
     }
