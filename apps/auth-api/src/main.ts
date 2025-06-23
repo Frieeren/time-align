@@ -13,6 +13,7 @@ async function bootstrap() {
     .setTitle("time-align API")
     .setDescription("time-align API")
     .setVersion("1.0")
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
