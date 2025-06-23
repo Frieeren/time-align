@@ -28,5 +28,4 @@ RUN corepack enable
 WORKDIR /app
 COPY --from=builder /app ./
 
-EXPOSE 3001
 CMD sh -c "pnpm --filter ${APP_NAME} start:prod"
