@@ -1,5 +1,6 @@
 import { BadRequestError, InternetServerError, NotFoundError } from "../exception/APIError";
 import { BaseError } from "../exception/BaseError";
+import { getCookie } from "../utils/cookie";
 
 // const baseURL = process.env.NODE_ENV === "development" ? "http://localhost:8000" : process.env.NEXT_PUBLIC_API_BASE_URL;
 const baseURL = "https://petstore.swagger.io/v2/";
@@ -83,11 +84,15 @@ export const httpClient = async <T>(config: FetchOptions): Promise<T> => {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT);
 
+  const accessToken = await getCookie("accessToken");
+  const refreshToken = await getCookie("refreshToken");
+
   try {
     const response = await fetch(fullUrl, {
       ...init,
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
         ...headers,
       },
       body: data ? JSON.stringify(data) : undefined,

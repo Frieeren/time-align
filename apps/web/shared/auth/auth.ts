@@ -1,12 +1,14 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
+import { cookies } from 'next/headers';
+import { deleteCookie } from "../utils/cookie";
 
 const config: NextAuthConfig = {
   providers: [Google],
   session: {
     strategy: "jwt",
-    maxAge: 60 * 60 * 24,
+    maxAge: 60 * 60 * 24, // 만료 기한 논의
   },
   pages: {
     signIn: "/signin",
@@ -35,10 +37,13 @@ const config: NextAuthConfig = {
         }
 
         const data = await response.json();
-
         user.user = data.user;
         user.accessToken = data.accessToken;
         user.refreshToken = data.refreshToken;
+
+        const cookieStore = await cookies();
+        cookieStore.set("accessToken", data.accessToken);
+        cookieStore.set("refreshToken", data.refreshToken);
 
         return true;
       } catch (error) {
@@ -62,6 +67,14 @@ const config: NextAuthConfig = {
       }
 
       return session;
+    },
+  },
+  events: {
+    signOut: async (message) => {
+      if ("token" in message) {
+        await deleteCookie("accessToken");
+        await deleteCookie("refreshToken");
+      }
     },
   },
 };
