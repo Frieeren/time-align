@@ -1,10 +1,10 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { JwtService } from "@nestjs/jwt";
-import { ConfigService } from "@nestjs/config";
 import { UnauthorizedException } from "@nestjs/common";
-import { AuthService } from "./auth.service";
-import { UsersService } from "../users/users.service";
+import { ConfigService } from "@nestjs/config";
+import { JwtService } from "@nestjs/jwt";
+import { Test, TestingModule } from "@nestjs/testing";
 import { User } from "../entities/user.entity";
+import { UsersService } from "../users/users.service";
+import { AuthService } from "./auth.service";
 
 describe("AuthService", () => {
   let authService: AuthService;
