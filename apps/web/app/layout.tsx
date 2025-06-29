@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
 
