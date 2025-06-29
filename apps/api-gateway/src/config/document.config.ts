@@ -1,5 +1,5 @@
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import type { INestApplication } from "@nestjs/common";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import type { OpenAPIObject } from "@nestjs/swagger";
 
 interface MicroserviceConfig {
