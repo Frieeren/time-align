@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
+import { JwtService } from "@nestjs/jwt";
 import { UsersService } from "../users/users.service";
 
 @Injectable()
@@ -49,7 +49,7 @@ export class AuthService {
         secret: this.configService.get<string>("app.jwt.secretKey"),
       }),
       refreshToken: this.jwtService.sign(payload, {
-        expiresIn: this.configService.get<string>("app.jwt.accessTokenExpiry"),
+        expiresIn: this.configService.get<string>("app.jwt.refreshTokenExpiry"),
         secret: this.configService.get<string>("app.jwt.secretKey"),
       }),
     };
@@ -61,15 +61,10 @@ export class AuthService {
         secret: this.configService.get<string>("app.jwt.secretKey"),
       });
 
-      // refresh token rotation
       return {
         accessToken: this.jwtService.sign({
           sub: payload.sub,
           email: payload.email,
-        }),
-        refreshToken: this.jwtService.sign(payload, {
-          expiresIn: this.configService.get<string>("app.jwt.refreshTokenExpiry"),
-          secret: this.configService.get<string>("app.jwt.secretKey"),
         }),
       };
     } catch (error) {
