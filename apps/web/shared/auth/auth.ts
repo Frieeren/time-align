@@ -2,7 +2,8 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
 import { deleteCookie, setCookie } from "../utils/cookie";
-import { httpClient } from "../api/http";
+import { authControllerOauthLogin } from "../api/endpoints/auth/auth";
+import type { OAuthLoginRequestDto } from "../api/model";
 
 const config: NextAuthConfig = {
   providers: [Google],
@@ -15,29 +16,16 @@ const config: NextAuthConfig = {
   },
   callbacks: {
     signIn: async ({ user, account }) => {
-      const payload = {
-        email: user.email,
-        name: user.name,
-        image: user.image,
-        provider: account?.provider,
-        providerId: account?.providerAccountId,
+      const payload: OAuthLoginRequestDto = {
+        email: user.email || "",
+        name: user.name || "",
+        image: user.image || "",
+        provider: account?.provider || "",
+        providerId: account?.providerAccountId || "",
       };
 
       try {
-        const response = await httpClient<{
-          accessToken: string;
-          refreshToken: string;
-          user: {
-            id: number;
-            email: string;
-            name: string;
-            image: string;
-          };
-        }>({
-          url: "/auth/oauth",
-          method: "POST",
-          body: JSON.stringify(payload)
-        });
+        const response = await authControllerOauthLogin(payload);
 
         user.user = response.user;
 
