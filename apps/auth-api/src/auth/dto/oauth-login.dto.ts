@@ -1,7 +1,24 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class OAuthLoginDto {
+class OAuthLoginUserDto {
+  @ApiProperty()
+  @IsNumber()
+  @IsNotEmpty()
+  id!: number;
+
+  @ApiProperty()
+  @IsEmail()
+  @IsNotEmpty()
+  email!: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
+}
+
+export class OAuthLoginRequestDto {
   @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
@@ -26,4 +43,19 @@ export class OAuthLoginDto {
   @IsString()
   @IsNotEmpty()
   providerId!: string;
+}
+
+export class OAuthLoginResponseDto {
+  @ApiProperty()
+  user!: OAuthLoginUserDto;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  accessToken!: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  refreshToken!: string;
 }
