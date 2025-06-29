@@ -1,14 +1,14 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
-import { cookies } from 'next/headers';
-import { deleteCookie } from "../utils/cookie";
+import { deleteCookie, setCookie } from "../utils/cookie";
+import { httpClient } from "../api/http";
 
 const config: NextAuthConfig = {
   providers: [Google],
   session: {
     strategy: "jwt",
-    maxAge: 60 * 60 * 24, // 만료 기한 논의
+    maxAge: 60 * 60 * 24 * 14,
   },
   pages: {
     signIn: "/signin",
@@ -24,26 +24,25 @@ const config: NextAuthConfig = {
       };
 
       try {
-        const response = await fetch("http://localhost:3001/auth/oauth", {
+        const response = await httpClient<{
+          accessToken: string;
+          refreshToken: string;
+          user: {
+            id: number;
+            email: string;
+            name: string;
+            image: string;
+          };
+        }>({
+          url: "/auth/oauth",
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+          body: JSON.stringify(payload)
         });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        user.user = response.user;
 
-        const data = await response.json();
-        user.user = data.user;
-        user.accessToken = data.accessToken;
-        user.refreshToken = data.refreshToken;
-
-        const cookieStore = await cookies();
-        cookieStore.set("accessToken", data.accessToken);
-        cookieStore.set("refreshToken", data.refreshToken);
+        await setCookie("accessToken", response.accessToken);
+        await setCookie("refreshToken", response.refreshToken);
 
         return true;
       } catch (error) {
@@ -52,20 +51,10 @@ const config: NextAuthConfig = {
         return false;
       }
     },
-    jwt: async ({ token, user }) => {
-      if (user?.accessToken) {
-        token.accessToken = user.accessToken;
-        token.refreshToken = user.refreshToken;
-      }
-
+    jwt: async ({ token }) => {
       return token;
     },
-    session: async ({ session, token }) => {
-      if (token.accessToken) {
-        session.accessToken = token.accessToken as string;
-        session.refreshToken = token.refreshToken as string;
-      }
-
+    session: async ({ session }) => {
       return session;
     },
   },

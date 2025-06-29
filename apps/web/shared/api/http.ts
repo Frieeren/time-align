@@ -1,6 +1,7 @@
 import { BadRequestError, InternetServerError, NotFoundError, UnauthorizedError } from "../exception/APIError";
 import { BaseError } from "../exception/BaseError";
 import { getCookie, setCookie } from "../utils/cookie";
+import { signOut } from "next-auth/react";
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const TIMEOUT = 60000;
@@ -109,6 +110,10 @@ export const httpClient = async <T>(config: FetchOptions): Promise<T> => {
 
     return parseResponse<T>(response);
   } catch (error) {
+    if (error instanceof UnauthorizedError) {
+      await signOut({ redirectTo: "/login" });
+    }
+
     if (error instanceof BaseError) {
       throw error;
     }
