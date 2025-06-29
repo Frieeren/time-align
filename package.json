@@ -9,7 +9,7 @@
     "check-types": "turbo run check-types",
     "check": "biome check",
     "check:fix": "biome check --write --unsafe",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
