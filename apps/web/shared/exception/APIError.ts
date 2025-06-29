@@ -6,6 +6,12 @@ export class BadRequestError extends BaseError {
   }
 }
 
+export class UnauthorizedError extends BaseError {
+  constructor(message: string) {
+    super(401, message);
+  }
+}
+
 export class InternetServerError extends BaseError {
   constructor(message: string) {
     super(500, message);

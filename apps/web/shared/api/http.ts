@@ -1,24 +1,9 @@
-import { BadRequestError, InternetServerError, NotFoundError } from "../exception/APIError";
+import { BadRequestError, InternetServerError, NotFoundError, UnauthorizedError } from "../exception/APIError";
 import { BaseError } from "../exception/BaseError";
-import { getCookie } from "../utils/cookie";
+import { getCookie, setCookie } from "../utils/cookie";
 
-// const baseURL = process.env.NODE_ENV === "development" ? "http://localhost:8000" : process.env.NEXT_PUBLIC_API_BASE_URL;
-const baseURL = "https://petstore.swagger.io/v2/";
+const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const TIMEOUT = 60000;
-
-export interface ErrorType<Error> {
-  name: string;
-  message: string;
-  response?: {
-    status: number;
-    data: Error;
-  };
-}
-
-export interface APIError {
-  message: string;
-  status: number;
-}
 
 interface FetchOptions extends RequestInit {
   url: string;
@@ -98,6 +83,29 @@ export const httpClient = async <T>(config: FetchOptions): Promise<T> => {
       body: data ? JSON.stringify(data) : undefined,
       signal: controller.signal,
     });
+
+    // re-verify access token
+    if (response.status === 401) {
+      const refreshResponse = await fetch(`${baseURL}/auth/refresh`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          refreshToken,
+        }),
+        signal: controller.signal,
+      });
+
+      if (refreshResponse.ok) {
+        const refreshData = await refreshResponse.json();
+        const newAccessToken = refreshData.accessToken;
+
+        await setCookie("accessToken", newAccessToken);
+      } else {
+        throw new UnauthorizedError("Expired authorization token");
+      }
+    }
 
     return parseResponse<T>(response);
   } catch (error) {

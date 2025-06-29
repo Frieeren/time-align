@@ -13,8 +13,7 @@ export default function TestAuthPage() {
   useEffect(() => {
     const getProfile = async () => {
       const response = await httpClient({
-        url: "/api/auth/profile",
-        routes: true,
+        url: "/auth/profile",
       });
 
       console.log(response);
