@@ -1,9 +1,9 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
-import { deleteCookie, setCookie } from "../utils/cookie";
+import Google from "next-auth/providers/google";
 import { authControllerOauthLogin } from "../api/endpoints/auth/auth";
 import type { OAuthLoginRequestDto } from "../api/model";
+import { deleteCookie, setCookie } from "../utils/cookie";
 
 const config: NextAuthConfig = {
   providers: [Google],
@@ -47,7 +47,7 @@ const config: NextAuthConfig = {
     },
   },
   events: {
-    signOut: async (message) => {
+    signOut: async message => {
       if ("token" in message) {
         await deleteCookie("accessToken");
         await deleteCookie("refreshToken");
@@ -56,10 +56,4 @@ const config: NextAuthConfig = {
   },
 };
 
-export const {
-  handlers,
-  signIn,
-  signOut,
-  auth,
-  unstable_update: update,
-} = NextAuth(config);
+export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth(config);

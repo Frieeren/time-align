@@ -11,20 +11,18 @@ export default function GoogleButton() {
 
   if (session) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <div style={{ fontSize: '14px', color: '#666' }}>
-          로그인됨: {session.user?.email}
-        </div>
-        <button 
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ fontSize: "14px", color: "#666" }}>로그인됨: {session.user?.email}</div>
+        <button
           type="button"
           onClick={() => signOut()}
           style={{
-            border: '1px solid #ff4444',
-            borderRadius: '5px',
-            padding: '10px 20px',
-            backgroundColor: '#ff4444',
-            color: 'white',
-            cursor: 'pointer',
+            border: "1px solid #ff4444",
+            borderRadius: "5px",
+            padding: "10px 20px",
+            backgroundColor: "#ff4444",
+            color: "white",
+            cursor: "pointer",
           }}
         >
           로그아웃
@@ -34,16 +32,16 @@ export default function GoogleButton() {
   }
 
   return (
-    <button 
+    <button
       type="button"
       onClick={() => signIn("google")}
       style={{
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        padding: '10px 20px',
-        display: 'flex',
-        alignItems: 'center',
-        cursor: 'pointer',
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        padding: "10px 20px",
+        display: "flex",
+        alignItems: "center",
+        cursor: "pointer",
       }}
     >
       <svg
@@ -73,7 +71,7 @@ export default function GoogleButton() {
           d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
         />
       </svg>
-      <div style={{ padding: '5px' }} />
+      <div style={{ padding: "5px" }} />
       <span>Sign In with Google</span>
     </button>
   );

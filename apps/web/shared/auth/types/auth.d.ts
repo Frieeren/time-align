@@ -1,7 +1,7 @@
-import 'next-auth';
-import '@auth/core/jwt';
+import "next-auth";
+import "@auth/core/jwt";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface User {
     user: {
       id: number;
@@ -18,7 +18,7 @@ declare module 'next-auth' {
   }
 }
 
-declare module '@auth/core/jwt' {
+declare module "@auth/core/jwt" {
   interface JWT {
     user: {
       id: number;
