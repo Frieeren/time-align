@@ -26,7 +26,7 @@ const services: MicroserviceConfig[] = [
   },
 ];
 
-export async function setupSwagger(app: INestApplication): Promise<void> {
+export async function setupSwagger(app: INestApplication): Promise<OpenAPIObject> {
   const config = new DocumentBuilder()
     .setTitle("Time-Align API")
     .setDescription("API Gateway")
@@ -76,4 +76,6 @@ export async function setupSwagger(app: INestApplication): Promise<void> {
   SwaggerModule.setup("api-docs", app, document, {
     jsonDocumentUrl: "/api-json",
   });
+
+  return document;
 }
