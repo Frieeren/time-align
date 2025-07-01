@@ -4,9 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - "api/**" 
-      - "api-gateway/**"
-      - "auth-api/**"
+      - "apps/api/**" 
+      - "apps/api-gateway/**"
+      - "apps/auth-api/**"
     branches:
       - main
 
