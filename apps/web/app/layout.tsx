@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
+import "../shared/style/index.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",

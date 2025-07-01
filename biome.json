@@ -19,7 +19,8 @@
       "out",
       "public",
       "build",
-      ".vercel"
+      ".vercel",
+      "styled-system"
     ]
   },
   "organizeImports": {
