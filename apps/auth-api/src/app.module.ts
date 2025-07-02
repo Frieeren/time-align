@@ -19,7 +19,7 @@ import { UsersModule } from "./users/users.module";
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
         return {
-          type: "mysql" as const,
+          type: configService.get<string>("database.type") as "mysql" | "sqlite",
           host: configService.get<string>("database.host"),
           port: configService.get<number>("database.port"),
           username: configService.get<string>("database.username"),
