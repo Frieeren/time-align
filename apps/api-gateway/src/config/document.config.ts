@@ -1,27 +1,29 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { INestApplication } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import type { OpenAPIObject } from "@nestjs/swagger";
 
 interface MicroserviceConfig {
   name: string;
-  url: string;
+  filePath: string;
   prefix: string;
 }
 
 const services: MicroserviceConfig[] = [
   {
     name: "API Service",
-    url: process.env.API_URL ?? "http://localhost:3001/api-json",
+    filePath: "docs/api.json",
     prefix: "/schedule",
   },
   {
     name: "Auth Service",
-    url: process.env.AUTH_API_URL ?? "http://localhost:3002/api-json",
+    filePath: "docs/auth-api.json",
     prefix: "/auth",
   },
   {
     name: "Notification Service",
-    url: process.env.NOTIFICATION_API_URL ?? "http://localhost:3003/api-json",
+    filePath: "docs/notification-api.json",
     prefix: "/notification",
   },
 ];
@@ -43,8 +45,8 @@ export async function setupSwagger(app: INestApplication): Promise<OpenAPIObject
 
   for (const service of services) {
     try {
-      const response = await fetch(service.url);
-      const serviceDoc = (await response.json()) as OpenAPIObject;
+      const filePath = path.join(process.cwd(), "..", "..", service.filePath);
+      const serviceDoc = JSON.parse(fs.readFileSync(filePath, "utf8")) as OpenAPIObject;
 
       if (serviceDoc.paths) {
         const prefixedPaths = {};

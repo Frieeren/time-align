@@ -3,7 +3,7 @@ import { defineConfig } from "orval";
 export default defineConfig({
   api: {
     input: {
-      target: "../../docs/api-docs.json",
+      target: "../../docs/api-gateway.json",
     },
     output: {
       mode: "tags-split", // API 태그별로 파일 분리
@@ -27,7 +27,7 @@ export default defineConfig({
   },
   zod: {
     input: {
-      target: "../../docs/api-docs.json",
+      target: "../../docs/api-gateway.json",
     },
     output: {
       mode: "tags-split",

@@ -7,6 +7,7 @@ on:
       - "apps/api/**" 
       - "apps/api-gateway/**"
       - "apps/auth-api/**"
+      - "apps/notification-api/**"
     branches:
       - main
 
@@ -34,7 +35,19 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate documentation
+      - name: Generate documentation (api)
+        working-directory: apps/api
+        run: pnpm run generate:swagger
+
+      - name: Generate documentation (auth-api)
+        working-directory: apps/auth-api
+        run: pnpm run generate:swagger
+
+      - name: Generate documentation (notification-api)
+        working-directory: apps/notification-api
+        run: pnpm run generate:swagger
+
+      - name: Generate documentation (api-gateway)
         working-directory: apps/api-gateway
         run: pnpm run generate:swagger
 
