@@ -19,9 +19,6 @@ export class NotificationPreference {
   @Column({ type: "boolean", default: true })
   isEnabled!: boolean;
 
-  @Column({ type: "json", nullable: true })
-  settings!: object;
-
   @CreateDateColumn()
   createdAt!: Date;
 
