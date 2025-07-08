@@ -12,7 +12,7 @@ export class NotificationPreference {
   @Column({
     type: "enum",
     enum: NotificationType,
-    default: NotificationType.KAKAO,
+    default: NotificationType.IN_APP,
   })
   notificationType!: NotificationType;
 
