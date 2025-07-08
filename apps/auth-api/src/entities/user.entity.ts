@@ -22,7 +22,7 @@ export class User {
   })
   provider!: UserProvider;
 
-  @Column({ nullable: true })
+  @Column()
   providerId!: string;
 
   @CreateDateColumn()

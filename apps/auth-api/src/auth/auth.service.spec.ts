@@ -3,6 +3,7 @@ import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { Test, TestingModule } from "@nestjs/testing";
 import { User } from "../entities/user.entity";
+import { UserProvider } from "../enums/user.enum";
 import { UsersService } from "../users/users.service";
 import { AuthService } from "./auth.service";
 
@@ -58,7 +59,7 @@ describe("AuthService", () => {
       email: "user@frieeren.com",
       name: "홍길동",
       image: "https://avatar.com/user.jpg",
-      provider: "google",
+      provider: UserProvider.GOOGLE,
       providerId: "google123",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -66,7 +67,7 @@ describe("AuthService", () => {
     jest.spyOn(usersService, "findByEmail").mockImplementation(() => Promise.resolve(등록된사용자));
 
     // When: 해당 사용자의 이메일과 제공자로 인증을 요청한다
-    const 결과 = await authService.validateUser("google", "user@frieeren.com");
+    const 결과 = await authService.validateUser(UserProvider.GOOGLE, "user@frieeren.com");
 
     // Then: 사용자 정보가 반환되어야 한다
     expect(결과).toEqual(등록된사용자);
@@ -77,7 +78,9 @@ describe("AuthService", () => {
     jest.spyOn(usersService, "findByEmail").mockImplementation(() => Promise.resolve(null));
 
     // When & Then: 존재하지 않는 사용자로 인증을 요청하면 '잘못된 인증 정보' 예외가 발생해야 한다
-    await expect(authService.validateUser("google", "nonexistent@example.com")).rejects.toThrow(UnauthorizedException);
+    await expect(authService.validateUser(UserProvider.GOOGLE, "nonexistent@example.com")).rejects.toThrow(
+      UnauthorizedException
+    );
   });
 
   it("OAuth 데이터가 주어지면, 사용자를 생성하거나 찾고 토큰들을 발급해야 한다", async () => {
@@ -100,7 +103,7 @@ describe("AuthService", () => {
         email: Google사용자.email,
         name: Google사용자.name,
         image: Google사용자.image,
-        provider: "google",
+        provider: UserProvider.GOOGLE,
         providerId: Google사용자.id,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -117,7 +120,7 @@ describe("AuthService", () => {
       email: Google사용자.email,
       name: Google사용자.name,
       image: Google사용자.image,
-      provider: "google",
+      provider: UserProvider.GOOGLE,
       providerId: Google사용자.id,
     });
 

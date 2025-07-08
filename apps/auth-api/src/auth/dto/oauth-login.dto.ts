@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { UserProvider } from "../../enums/user.enum";
 
 class OAuthLoginUserDto {
   @ApiProperty()
@@ -35,9 +36,9 @@ export class OAuthLoginRequestDto {
   image!: string;
 
   @ApiProperty()
-  @IsString()
+  @IsEnum(UserProvider)
   @IsNotEmpty()
-  provider!: string;
+  provider!: UserProvider;
 
   @ApiProperty()
   @IsString()
