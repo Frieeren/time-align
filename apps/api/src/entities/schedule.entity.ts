@@ -30,7 +30,7 @@ export class Schedule {
   location!: string;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: ScheduleStatus,
     default: ScheduleStatus.SCHEDULED,
   })

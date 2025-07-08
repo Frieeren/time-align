@@ -16,14 +16,14 @@ export class Notification {
   message!: string;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: NotificationType,
     default: NotificationType.IN_APP,
   })
   type!: NotificationType;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: NotificationStatus,
     default: NotificationStatus.PENDING,
   })

@@ -14,14 +14,14 @@ export class ScheduleParticipant {
   userId!: number;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: ScheduleParticipantRole,
     default: ScheduleParticipantRole.ATTENDEE,
   })
   role!: ScheduleParticipantRole;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: ScheduleParticipantResponseStatus,
     default: ScheduleParticipantResponseStatus.PENDING,
   })
