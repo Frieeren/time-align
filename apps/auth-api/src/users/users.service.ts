@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "../entities/user.entity";
+import { UserProvider } from "../enums/user.enum";
 
 @Injectable()
 export class UsersService {
@@ -10,8 +11,10 @@ export class UsersService {
     private userRepository: Repository<User>
   ) {}
 
-  async findByEmail(provider: string, email: string): Promise<User | null> {
-    return this.userRepository.findOne({ where: { email, provider } });
+  async findByEmail(provider: UserProvider, email: string): Promise<User | null> {
+    return this.userRepository.findOne({
+      where: { email, provider },
+    });
   }
 
   async findById(id: number): Promise<User | null> {
@@ -22,15 +25,15 @@ export class UsersService {
     email: string;
     name: string;
     image: string;
-    provider?: string;
-    providerId?: string;
+    provider: UserProvider;
+    providerId: string;
   }): Promise<User> {
     const user = new User();
     user.email = userData.email;
     user.name = userData.name;
     user.image = userData.image;
-    user.provider = userData.provider || "";
-    user.providerId = userData.providerId || "";
+    user.provider = userData.provider;
+    user.providerId = userData.providerId;
 
     return this.userRepository.save(user);
   }
@@ -39,8 +42,8 @@ export class UsersService {
     email: string;
     name: string;
     image: string;
-    provider: string;
-    providerId?: string;
+    provider: UserProvider;
+    providerId: string;
   }): Promise<User> {
     let user = await this.findByEmail(userData.provider, userData.email);
 

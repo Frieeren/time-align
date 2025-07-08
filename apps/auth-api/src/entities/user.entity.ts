@@ -1,4 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UserProvider } from "../enums/user.enum";
 
 @Entity({ name: "users" })
 export class User {
@@ -14,10 +15,14 @@ export class User {
   @Column()
   image!: string;
 
-  @Column({ nullable: true })
-  provider!: string;
+  @Column({
+    type: "enum",
+    enum: UserProvider,
+    default: UserProvider.GOOGLE,
+  })
+  provider!: UserProvider;
 
-  @Column({ nullable: true })
+  @Column()
   providerId!: string;
 
   @CreateDateColumn()

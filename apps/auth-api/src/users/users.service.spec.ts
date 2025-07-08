@@ -2,6 +2,7 @@ import { Test, type TestingModule } from "@nestjs/testing";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "../entities/user.entity";
+import { UserProvider } from "../enums/user.enum";
 import { UsersService } from "./users.service";
 
 describe("UsersService", () => {
@@ -39,7 +40,7 @@ describe("UsersService", () => {
       email: "user@frieeren.com",
       name: "홍길동",
       image: "https://avatar.com/user.jpg",
-      provider: "google",
+      provider: UserProvider.GOOGLE,
       providerId: "google123",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -48,7 +49,7 @@ describe("UsersService", () => {
     jest.spyOn(userRepository, "findOne").mockResolvedValue(등록된사용자);
 
     // When: 이메일로 사용자를 조회한다
-    const 결과 = await usersService.findByEmail("google", "user@frieeren.com");
+    const 결과 = await usersService.findByEmail(UserProvider.GOOGLE, "user@frieeren.com");
 
     // Then: 해당 사용자가 반환되어야 한다
     expect(결과).toEqual(등록된사용자);
@@ -59,7 +60,7 @@ describe("UsersService", () => {
     jest.spyOn(userRepository, "findOne").mockResolvedValue(null);
 
     // When: 존재하지 않는 사용자를 조회한다
-    const 결과 = await usersService.findByEmail("google", "none@frieeren.com");
+    const 결과 = await usersService.findByEmail(UserProvider.GOOGLE, "none@frieeren.com");
 
     // Then: null이 반환되어야 한다
     expect(결과).toBeNull();
@@ -71,7 +72,7 @@ describe("UsersService", () => {
       email: "new@frieeren.com",
       name: "신규사용자",
       image: "avatar.jpg",
-      provider: "google",
+      provider: UserProvider.GOOGLE,
       providerId: "google123",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -93,7 +94,7 @@ describe("UsersService", () => {
       email: "new@frieeren.com",
       name: "신규사용자",
       image: "avatar.jpg",
-      provider: "google",
+      provider: UserProvider.GOOGLE,
       providerId: "google123",
       createdAt: new Date(),
       updatedAt: new Date(),

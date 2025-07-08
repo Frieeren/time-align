@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
+import { UserProvider } from "../enums/user.enum";
 import { UsersService } from "../users/users.service";
 
 @Injectable()
@@ -11,7 +12,7 @@ export class AuthService {
     readonly configService: ConfigService
   ) {}
 
-  async validateUser(provider: string, email: string) {
+  async validateUser(provider: UserProvider, email: string) {
     const user = await this.usersService.findByEmail(provider, email);
 
     if (!user) {
@@ -25,7 +26,7 @@ export class AuthService {
     email: string;
     name: string;
     image: string;
-    provider: string;
+    provider: UserProvider;
     providerId: string;
   }) {
     const user = await this.usersService.findOrCreateUser({
