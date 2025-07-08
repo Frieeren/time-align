@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
 import "../shared/style/index.css";
+import "@team-frieeren/components/styles";
+import { ToastProvider } from "@team-frieeren/components/client";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SessionProvider>
-          <RQProvider>{children}</RQProvider>
+          <RQProvider>
+            <ToastProvider>{children}</ToastProvider>
+          </RQProvider>
         </SessionProvider>
       </body>
     </html>
