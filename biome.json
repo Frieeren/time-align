@@ -53,7 +53,12 @@
   },
   "overrides": [
     {
-      "include": ["apps/auth-api/**/*.ts"],
+      "include": [
+        "apps/auth-api/**/*.ts",
+        "apps/api-gateway/**/*.ts",
+        "apps/api/**/*.ts",
+        "apps/notification-api/**/*.ts"
+      ],
       "linter": {
         "rules": {
           "style": {

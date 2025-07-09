@@ -1,0 +1,65 @@
+name: OpenAPI Generator
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - "apps/api/**" 
+      - "apps/api-gateway/**"
+      - "apps/auth-api/**"
+      - "apps/notification-api/**"
+    branches:
+      - main
+
+jobs:
+  generate-api:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".node-version"
+          cache: "pnpm"
+          cache-dependency-path: "pnpm-lock.yaml"
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate documentation (api)
+        working-directory: apps/api
+        run: pnpm run generate:swagger
+
+      - name: Generate documentation (auth-api)
+        working-directory: apps/auth-api
+        run: pnpm run generate:swagger
+
+      - name: Generate documentation (notification-api)
+        working-directory: apps/notification-api
+        run: pnpm run generate:swagger
+
+      - name: Generate documentation (api-gateway)
+        working-directory: apps/api-gateway
+        run: pnpm run generate:swagger
+
+      - name: Generate API using Orval
+        working-directory: apps/web
+        run: pnpm run generate:api
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "feat(web): update API using oas [skip ci]"
+          commit_user_name: "frieeren[bot]"
+          commit_user_email: "frieeren[bot]@users.noreply.github.com"
+          branch: ${{ github.head_ref }}
+          push_options: --force-with-lease

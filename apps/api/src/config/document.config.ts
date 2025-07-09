@@ -1,10 +1,8 @@
-import { NestFactory } from "@nestjs/core";
+import type { INestApplication } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { AppModule } from "./app.module";
+import type { OpenAPIObject } from "@nestjs/swagger";
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
+export async function setupSwagger(app: INestApplication): Promise<OpenAPIObject> {
   const config = new DocumentBuilder()
     .setTitle("time-align API")
     .setDescription("time-align API")
@@ -18,6 +16,5 @@ async function bootstrap() {
     jsonDocumentUrl: "/api-json",
   });
 
-  await app.listen(process.env.PORT ?? 3003);
+  return document;
 }
-bootstrap();

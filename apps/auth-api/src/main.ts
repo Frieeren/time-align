@@ -29,7 +29,7 @@ async function bootstrap() {
     jsonDocumentUrl: "/api-json",
   });
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3002);
 
   if (module.hot) {
     module.hot.accept();

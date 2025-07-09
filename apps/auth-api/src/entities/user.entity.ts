@@ -16,7 +16,7 @@ export class User {
   image!: string;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: UserProvider,
     default: UserProvider.GOOGLE,
   })

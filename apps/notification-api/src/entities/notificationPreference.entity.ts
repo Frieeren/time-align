@@ -10,7 +10,7 @@ export class NotificationPreference {
   userId!: number;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: NotificationType,
     default: NotificationType.IN_APP,
   })
