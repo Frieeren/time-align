@@ -1,6 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { setupSwagger } from "./config/document.config";
+import { CommonResponseInterceptor } from "./interceptors/response.interceptor";
 
 // https://docs.nestjs.com/recipes/hot-reload#hot-module-replacement
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -11,6 +12,7 @@ async function bootstrap() {
 
   await setupSwagger(app);
 
+  app.useGlobalInterceptors(new CommonResponseInterceptor());
   await app.listen(process.env.PORT ?? 3001);
 
   if (module.hot) {
