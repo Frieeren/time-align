@@ -14,6 +14,598 @@
           "App"
         ]
       }
+    },
+    "/schedules": {
+      "post": {
+        "operationId": "SchedulesController_create",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "일정이 성공적으로 생성됨",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateScheduleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      },
+      "get": {
+        "operationId": "SchedulesController_findAll",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "일정 목록 조회 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryScheduleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      }
+    },
+    "/schedules/{id}": {
+      "get": {
+        "operationId": "SchedulesController_findOne",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "일정 상세 정보 조회 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DetailScheduleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      },
+      "patch": {
+        "operationId": "SchedulesController_update",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "일정이 성공적으로 수정됨",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateScheduleResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      },
+      "delete": {
+        "operationId": "SchedulesController_remove",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "일정이 성공적으로 삭제됨",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      }
+    },
+    "/schedules/{id}/respond": {
+      "post": {
+        "operationId": "SchedulesController_respondToSchedule",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "참여 응답 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      }
+    },
+    "/schedules/{id}/invite": {
+      "post": {
+        "operationId": "SchedulesController_inviteUsers",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "사용자 초대 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      }
+    },
+    "/schedules/{id}/participants": {
+      "get": {
+        "operationId": "SchedulesController_getParticipants",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "참여자 목록 조회 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      }
+    },
+    "/schedules/{id}/invite-link": {
+      "post": {
+        "operationId": "SchedulesController_generateInviteLink",
+        "parameters": [
+          {
+            "name": "x-user-roles",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 역할",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-name",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이름",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-email",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 이메일",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
+            "description": "API Gateway에서 전달되는 사용자 ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "초대 링크 생성 완료",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "schedules"
+        ]
+      }
     }
   },
   "info": {
@@ -32,6 +624,297 @@
         "type": "http"
       }
     },
-    "schemas": {}
+    "schemas": {
+      "CreateScheduleRequestDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "startTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isAllDay": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "startTime",
+          "endTime",
+          "location",
+          "status",
+          "isAllDay",
+          "createdAt",
+          "updatedAt",
+          "participants"
+        ]
+      },
+      "ScheduleDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "startTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isAllDay": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description",
+          "startTime",
+          "endTime",
+          "location",
+          "status",
+          "isAllDay",
+          "createdAt",
+          "updatedAt",
+          "participants"
+        ]
+      },
+      "CreateScheduleResponseDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScheduleDto"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ]
+      },
+      "PageInfo": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number"
+          },
+          "size": {
+            "type": "number"
+          },
+          "totalElements": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "page",
+          "size",
+          "totalElements",
+          "totalPages"
+        ]
+      },
+      "PaginatedData": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pageInfo": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        },
+        "required": [
+          "data",
+          "pageInfo"
+        ]
+      },
+      "QueryScheduleResponseDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PaginatedData"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ]
+      },
+      "DetailScheduleResponseDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScheduleDto"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ]
+      },
+      "UpdateScheduleRequestDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "startTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endTime": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isAllDay": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "UpdateScheduleResponseDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ScheduleDto"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ]
+      },
+      "CommonResponseDto": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "statusCode",
+          "message",
+          "data"
+        ]
+      }
+    }
   }
 }
