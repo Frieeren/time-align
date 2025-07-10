@@ -1,5 +1,5 @@
 import { Transform } from "class-transformer";
-import { IsDateString, IsEnum, IsNumber, IsOptional } from "class-validator";
+import { IsDateString, IsEnum, IsNumber, IsOptional, Min } from "class-validator";
 import { ScheduleStatus } from "../../entities/schedule.entity";
 
 export class QueryScheduleDto {
@@ -18,10 +18,12 @@ export class QueryScheduleDto {
   @IsOptional()
   @Transform(({ value }) => Number.parseInt(value))
   @IsNumber()
+  @Min(1)
   page?: number = 1;
 
   @IsOptional()
   @Transform(({ value }) => Number.parseInt(value))
   @IsNumber()
-  limit?: number = 20;
+  @Min(1)
+  size?: number = 20;
 }

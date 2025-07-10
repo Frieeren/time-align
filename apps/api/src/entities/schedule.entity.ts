@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { ScheduleParticipant } from "./scheduleParticipants.entity";
 
 export enum ScheduleStatus {
   SCHEDULED = "SCHEDULED",
@@ -44,4 +45,13 @@ export class Schedule {
 
   @UpdateDateColumn()
   updatedAt!: Date;
+
+  @OneToMany(
+    () => ScheduleParticipant,
+    participant => participant.schedule,
+    {
+      cascade: true,
+    }
+  )
+  participants!: ScheduleParticipant[];
 }
