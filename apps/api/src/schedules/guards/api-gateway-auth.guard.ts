@@ -6,16 +6,24 @@ export class ApiGatewayAuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
 
     const userId = request.headers["x-user-id"];
+    const userEmail = request.headers["x-user-email"];
+    const userName = request.headers["x-user-name"];
+    const userRoles = request.headers["x-user-roles"];
 
     if (!userId) {
       throw new UnauthorizedException("API Gateway에서 인증되지 않은 요청입니다.");
     }
 
+    const parsedUserId = Number.parseInt(userId);
+    if (Number.isNaN(parsedUserId)) {
+      throw new UnauthorizedException("유효하지 않은 사용자 ID입니다.");
+    }
+
     request.user = {
-      id: Number.parseInt(userId),
-      email: request.headers["x-user-email"],
-      name: request.headers["x-user-name"],
-      roles: request.headers["x-user-roles"]?.split(",") || [],
+      id: parsedUserId,
+      email: userEmail ?? "",
+      name: userName ?? "",
+      roles: userRoles?.split(",") || [],
     };
 
     return true;
