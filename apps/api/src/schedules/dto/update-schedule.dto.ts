@@ -1,34 +1,11 @@
-import { PartialType } from "@nestjs/swagger";
-import { IsBoolean, IsDateString, IsEnum, IsOptional, IsString } from "class-validator";
-import { ScheduleStatus } from "../../entities/schedule.entity";
-import { CreateScheduleDto } from "./create-schedule.dto";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
+import { CommonResponseDto } from "../../dto/response.dto";
+import { CreateScheduleRequestDto } from "./create-schedule.dto";
+import { ScheduleDto } from "./schedule.dto";
 
-export class UpdateScheduleDto extends PartialType(CreateScheduleDto) {
-  @IsOptional()
-  @IsString()
-  title?: string;
+export class UpdateScheduleRequestDto extends PartialType(CreateScheduleRequestDto) {}
 
-  @IsOptional()
-  @IsString()
-  description?: string;
-
-  @IsOptional()
-  @IsDateString()
-  startTime?: string;
-
-  @IsOptional()
-  @IsDateString()
-  endTime?: string;
-
-  @IsOptional()
-  @IsString()
-  location?: string;
-
-  @IsOptional()
-  @IsEnum(ScheduleStatus)
-  status?: ScheduleStatus;
-
-  @IsOptional()
-  @IsBoolean()
-  isAllDay?: boolean;
+export class UpdateScheduleResponseDto extends CommonResponseDto<ScheduleDto> {
+  @ApiProperty({ type: ScheduleDto })
+  data?: ScheduleDto = undefined;
 }

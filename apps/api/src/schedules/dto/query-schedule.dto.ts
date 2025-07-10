@@ -1,8 +1,11 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Transform } from "class-transformer";
 import { IsDateString, IsEnum, IsNumber, IsOptional, Min } from "class-validator";
+import { CommonPaginatedResponseDto, PaginatedData } from "../../dto/response.dto";
 import { ScheduleStatus } from "../../entities/schedule.entity";
+import { ScheduleDto } from "./schedule.dto";
 
-export class QueryScheduleDto {
+export class QueryScheduleRequestDto {
   @IsOptional()
   @IsDateString()
   startDate?: string;
@@ -27,3 +30,5 @@ export class QueryScheduleDto {
   @Min(1)
   size?: number = 20;
 }
+
+export class QueryScheduleResponseDto extends CommonPaginatedResponseDto<ScheduleDto> {}
