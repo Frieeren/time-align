@@ -1,8 +1,8 @@
 import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from "@nestjs/common";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { CommonPaginatedResponseDto, CommonResponseDto, PaginatedData } from "../dto/response.dto";
 import { getStatusMessage } from "../helpers/status-message.helper";
-import { CommonPaginatedResponse, CommonResponse, PaginatedData } from "../interfaces/response.interface";
 
 @Injectable()
 export class CommonResponseInterceptor implements NestInterceptor {
@@ -29,8 +29,8 @@ export class CommonResponseInterceptor implements NestInterceptor {
     return "data" in data && "pageInfo" in data && Array.isArray(data.data);
   }
 
-  private createCommonResponse<T>(statusCode: HttpStatus, message: string, data: T): CommonResponse<T> {
-    const response: CommonResponse<T> = {
+  private createCommonResponse<T>(statusCode: HttpStatus, message: string, data: T): CommonResponseDto<T> {
+    const response: CommonResponseDto<T> = {
       statusCode,
       message,
     };
@@ -46,7 +46,7 @@ export class CommonResponseInterceptor implements NestInterceptor {
     statusCode: HttpStatus,
     message: string,
     data: PaginatedData<T>
-  ): CommonPaginatedResponse<T> {
+  ): CommonPaginatedResponseDto<T> {
     const { data: items, pageInfo } = data;
     const totalPages = Math.ceil(pageInfo.totalElements / pageInfo.size);
 
