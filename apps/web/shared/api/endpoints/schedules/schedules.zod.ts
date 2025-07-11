@@ -7,13 +7,6 @@
  */
 import { z as zod } from "zod";
 
-export const schedulesControllerCreateHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
-});
-
 export const schedulesControllerCreateBody = zod.object({
   title: zod.string(),
   description: zod.string(),
@@ -25,13 +18,6 @@ export const schedulesControllerCreateBody = zod.object({
   createdAt: zod.string().datetime({}),
   updatedAt: zod.string().datetime({}),
   participants: zod.array(zod.string()),
-});
-
-export const schedulesControllerFindAllHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
 });
 
 export const schedulesControllerFindAllResponse = zod.object({
@@ -50,13 +36,6 @@ export const schedulesControllerFindAllResponse = zod.object({
 
 export const schedulesControllerFindOneParams = zod.object({
   id: zod.number(),
-});
-
-export const schedulesControllerFindOneHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
 });
 
 export const schedulesControllerFindOneResponse = zod.object({
@@ -79,13 +58,6 @@ export const schedulesControllerFindOneResponse = zod.object({
 
 export const schedulesControllerUpdateParams = zod.object({
   id: zod.number(),
-});
-
-export const schedulesControllerUpdateHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
 });
 
 export const schedulesControllerUpdateBody = zod.object({
@@ -123,13 +95,6 @@ export const schedulesControllerRemoveParams = zod.object({
   id: zod.number(),
 });
 
-export const schedulesControllerRemoveHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
-});
-
 export const schedulesControllerRemoveResponse = zod.object({
   statusCode: zod.number(),
   message: zod.string(),
@@ -138,13 +103,6 @@ export const schedulesControllerRemoveResponse = zod.object({
 
 export const schedulesControllerRespondToScheduleParams = zod.object({
   id: zod.number(),
-});
-
-export const schedulesControllerRespondToScheduleHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
 });
 
 export const schedulesControllerRespondToScheduleResponse = zod.object({
@@ -157,13 +115,6 @@ export const schedulesControllerInviteUsersParams = zod.object({
   id: zod.number(),
 });
 
-export const schedulesControllerInviteUsersHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
-});
-
 export const schedulesControllerInviteUsersResponse = zod.object({
   statusCode: zod.number(),
   message: zod.string(),
@@ -174,13 +125,6 @@ export const schedulesControllerGetParticipantsParams = zod.object({
   id: zod.number(),
 });
 
-export const schedulesControllerGetParticipantsHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
-});
-
 export const schedulesControllerGetParticipantsResponse = zod.object({
   statusCode: zod.number(),
   message: zod.string(),
@@ -189,13 +133,6 @@ export const schedulesControllerGetParticipantsResponse = zod.object({
 
 export const schedulesControllerGenerateInviteLinkParams = zod.object({
   id: zod.number(),
-});
-
-export const schedulesControllerGenerateInviteLinkHeader = zod.object({
-  "x-user-roles": zod.string().optional().describe("API Gateway에서 전달되는 사용자 역할"),
-  "x-user-name": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이름"),
-  "x-user-email": zod.string().optional().describe("API Gateway에서 전달되는 사용자 이메일"),
-  "x-user-id": zod.string().describe("API Gateway에서 전달되는 사용자 ID"),
 });
 
 export const schedulesControllerGenerateInviteLinkResponse = zod.object({
