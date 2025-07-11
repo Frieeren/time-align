@@ -32,44 +32,7 @@
     "/schedule/schedules": {
       "post": {
         "operationId": "SchedulesController_create",
-        "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -92,50 +55,18 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
       },
       "get": {
         "operationId": "SchedulesController_findAll",
-        "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "일정 목록 조회 성공",
@@ -148,6 +79,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -157,42 +93,6 @@
       "get": {
         "operationId": "SchedulesController_findOne",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -214,6 +114,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -221,42 +126,6 @@
       "patch": {
         "operationId": "SchedulesController_update",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -288,6 +157,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -295,42 +169,6 @@
       "delete": {
         "operationId": "SchedulesController_remove",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -352,6 +190,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -361,42 +204,6 @@
       "post": {
         "operationId": "SchedulesController_respondToSchedule",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -418,6 +225,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -427,42 +239,6 @@
       "post": {
         "operationId": "SchedulesController_inviteUsers",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -484,6 +260,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -493,42 +274,6 @@
       "get": {
         "operationId": "SchedulesController_getParticipants",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -550,6 +295,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -559,42 +309,6 @@
       "post": {
         "operationId": "SchedulesController_generateInviteLink",
         "parameters": [
-          {
-            "name": "x-user-roles",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 역할",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-name",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이름",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-email",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 이메일",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-user-id",
-            "in": "header",
-            "description": "API Gateway에서 전달되는 사용자 ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
@@ -616,6 +330,11 @@
             }
           }
         },
+        "security": [
+          {
+            "ApiGatewayAuth": []
+          }
+        ],
         "tags": [
           "schedules"
         ]
@@ -708,7 +427,7 @@
         },
         "security": [
           {
-            "bearer": []
+            "BearerAuth": []
           }
         ],
         "tags": [
@@ -741,10 +460,15 @@
   "servers": [],
   "components": {
     "securitySchemes": {
-      "bearer": {
+      "BearerAuth": {
+        "type": "http",
         "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "type": "http"
+        "bearerFormat": "JWT"
+      },
+      "ApiGatewayAuth": {
+        "type": "apiKey",
+        "name": "x-user-id",
+        "in": "header"
       }
     },
     "schemas": {
