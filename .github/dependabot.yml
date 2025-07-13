@@ -10,4 +10,3 @@ updates:
     allow:
       - dependency-name: "@team-frieeren/*"
         update-types: ["version-update:semver-minor", "version-update:semver-patch"]
-        
