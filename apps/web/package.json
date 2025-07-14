@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "generate:api": "orval && biome check --fix --unsafe ./shared/api/**/*"
+    "generate:api": "orval && biome check --fix --unsafe ./shared/api/**/*",
+    "prepare": "panda codegen"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.80.7",
