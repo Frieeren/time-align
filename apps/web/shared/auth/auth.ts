@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthResult } from "next-auth";
 import type { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import { authControllerOauthLogin } from "../api/endpoints/auth/auth";
@@ -56,4 +56,10 @@ const config: NextAuthConfig = {
   },
 };
 
-export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth(config);
+const result = NextAuth(config);
+
+export const handlers: NextAuthResult["handlers"] = result.handlers;
+export const auth: NextAuthResult["auth"] = result.auth;
+export const signIn: NextAuthResult["signIn"] = result.signIn;
+export const signOut: NextAuthResult["signOut"] = result.signOut;
+export const update: NextAuthResult["unstable_update"] = result.unstable_update;

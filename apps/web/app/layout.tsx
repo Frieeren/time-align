@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
 import "../shared/style/index.css";
-import "@team-frieeren/components/styles";
+import "@team-frieeren/components/styles.css";
 import { ToastProvider } from "@team-frieeren/components/client";
 
 export const metadata: Metadata = {
