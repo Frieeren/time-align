@@ -10,6 +10,9 @@ on:
 jobs:
   code-quality: # git hook 우회 방지
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
     steps:
       - name: 📦 Checkout Repository
         uses: actions/checkout@v4
@@ -27,7 +30,12 @@ jobs:
           cache-dependency-path: "pnpm-lock.yaml"
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if [ "${{ github.event.pull_request.user.login }}" == "dependabot[bot]" ]; then
+            pnpm install
+          else
+            pnpm install --frozen-lockfile
+          fi
 
       - name: 🔍 Run biome check
         run: pnpm run check
