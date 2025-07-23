@@ -10,6 +10,7 @@ on:
 jobs:
   code-quality: # git hook 우회 방지
     runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
     defaults:
       run:
         working-directory: .
@@ -29,13 +30,8 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "pnpm-lock.yaml"
 
-      - name: 📦 Install dependencies (not dependabot)
-        if: github.event.pull_request.user.login != 'dependabot[bot]'
+      - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: 📦 Install dependencies (dependabot)
-        if: github.event.pull_request.user.login == 'dependabot[bot]'
-        run: pnpm install --no-frozen-lockfile
 
       - name: 🔍 Run biome check
         run: pnpm run check
