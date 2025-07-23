@@ -29,13 +29,13 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "pnpm-lock.yaml"
 
-      - name: 📦 Install dependencies
-        run: |
-          if [ "${{ github.event.pull_request.user.login }}" == "dependabot[bot]" ]; then
-            pnpm install
-          else
-            pnpm install --frozen-lockfile
-          fi
+      - name: 📦 Install dependencies (not dependabot)
+        if: github.event.pull_request.user.login != 'dependabot[bot]'
+        run: pnpm install --frozen-lockfile
+
+      - name: 📦 Install dependencies (dependabot)
+        if: github.event.pull_request.user.login == 'dependabot[bot]'
+        run: pnpm install
 
       - name: 🔍 Run biome check
         run: pnpm run check
