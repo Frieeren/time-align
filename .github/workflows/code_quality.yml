@@ -35,3 +35,10 @@ jobs:
 
       - name: 🔍 Run biome check
         run: pnpm run check
+
+  dependabot-skip:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    steps:
+      - name: ✅ Skip code quality check for dependabot
+        run: echo "Code quality check skipped for dependabot PR"
