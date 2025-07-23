@@ -2,8 +2,7 @@ name: Dependabot fetch package
 on: pull_request
 
 permissions:
-  pull-requests: write
-  issues: write
+  contents: write
 
 jobs:
   dependabot:
