@@ -27,7 +27,7 @@ export default function RootLayout({
             </AppLogProvider>
           </RQProvider>
         </SessionProvider>
-        <GoogleAnalytics gaId="G-XYZ" />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
       </body>
     </html>
   );
