@@ -1,5 +1,6 @@
 "use client";
 
+import { sendGAEvent } from "@next/third-parties/google";
 import { LogProvider } from "@team-frieeren/components";
 
 export function AppLogProvider({ children }: { children: React.ReactNode }) {
@@ -16,21 +17,20 @@ export function AppLogProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      // switch (event) {
-      //   case "screen": {
-      //     ga.send("pageview", {
-      //       logId: data?.logId,
-      //       params: data?.params,
-      //     });
-      //     break;
-      //   }
-      //   case "event": {
-      //     ga.send("event", {
-      //       logId: data?.logId,
-      //       params: data?.params,
-      //     });
-      //   }
-      // }
+      switch (event) {
+        case "screen": {
+          sendGAEvent(event, "pageview", {
+            logId: data?.logId,
+            params: data?.params,
+          });
+          break;
+        }
+        case "event":
+          sendGAEvent(event, "event", {
+            logId: data?.logId,
+            params: data?.params,
+          });
+      }
     },
   };
 
