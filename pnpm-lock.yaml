@@ -426,6 +426,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@next/third-parties':
+        specifier: ^15.4.4
+        version: 15.4.4(next@15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
       '@tanstack/react-query':
         specifier: ^5.80.7
         version: 5.80.7(react@19.1.0)
@@ -433,8 +436,8 @@ importers:
         specifier: ^5.80.7
         version: 5.80.7(@tanstack/react-query@5.80.7(react@19.1.0))(react@19.1.0)
       '@team-frieeren/components':
-        specifier: ^1.0.13
-        version: 1.0.13(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: file:team-frieeren-components-1.0.25.tgz
+        version: file:apps/web/team-frieeren-components-1.0.25.tgz(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next:
         specifier: ^15.3.0
         version: 15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
@@ -1764,6 +1767,12 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@next/third-parties@15.4.4':
+    resolution: {integrity: sha512-0GIEDSxfl9hTU4Ne1TVr/lZUS1wGhDPB4gt6TNvLBA3Fioum+qZRoPt3fiOW9hHQynyLsojglRDaB97T92h0Og==}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0 || ^15.0.0
+      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
 
   '@noble/hashes@1.8.0':
     resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
@@ -3106,8 +3115,9 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@team-frieeren/components@1.0.13':
-    resolution: {integrity: sha512-n5zwHERtKZI8kmwJ2xpl9yzgfD0fLvW5U4QCbrtdiXzT6nVptsaposhPtMSqrK3P0+qxR4PGZaqirn5o6s81zQ==}
+  '@team-frieeren/components@file:apps/web/team-frieeren-components-1.0.25.tgz':
+    resolution: {integrity: sha512-yTapg4tOHqH8QPHFFjerDZ7hvygNa5LtbvcJao2Y20mXb1gBU4cRBFMLaH/uyF9SdNLyBScwpFWzsvyCLHp2QA==, tarball: file:apps/web/team-frieeren-components-1.0.25.tgz}
+    version: 1.0.25
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -6962,6 +6972,9 @@ packages:
     resolution: {integrity: sha512-te/NtwBwfiNRLf9Ijqx3T0nlqZiQ2XrrtBvu+cLL8ZRrGkO0NHTug8MYFKyoSrv/sHTaSKfilUkizV6XhxMJ3g==}
     engines: {node: '>=8'}
 
+  third-party-capital@1.0.20:
+    resolution: {integrity: sha512-oB7yIimd8SuGptespDAZnNkzIz+NWaJCu2RMsbs4Wmp9zSDUM8Nhi3s2OOcqYuv3mN4hitXc8DVx+LyUmbUDiA==}
+
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
@@ -8892,6 +8905,12 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.3.0':
     optional: true
 
+  '@next/third-parties@15.4.4(next@15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)':
+    dependencies:
+      next: 15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
+      react: 19.1.0
+      third-party-capital: 1.0.20
+
   '@noble/hashes@1.8.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -10500,7 +10519,7 @@ snapshots:
       '@tanstack/query-core': 5.80.7
       react: 19.1.0
 
-  '@team-frieeren/components@1.0.13(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@team-frieeren/components@file:apps/web/team-frieeren-components-1.0.25.tgz(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@radix-ui/react-accordion': 1.2.11(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-checkbox': 1.3.2(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -15009,6 +15028,8 @@ snapshots:
       b4a: 1.6.7
 
   text-extensions@2.4.0: {}
+
+  third-party-capital@1.0.20: {}
 
   through@2.3.8: {}
 

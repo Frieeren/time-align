@@ -3,7 +3,9 @@ import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
 import "../shared/style/index.css";
 import "@team-frieeren/components/styles.css";
-import { ToastProvider } from "@team-frieeren/components/client";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { ToastProvider } from "@team-frieeren/components/toast";
+import { AppLogProvider } from "../shared/provider/AppLogProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,9 +22,12 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <RQProvider>
-            <ToastProvider>{children}</ToastProvider>
+            <AppLogProvider>
+              <ToastProvider>{children}</ToastProvider>
+            </AppLogProvider>
           </RQProvider>
         </SessionProvider>
+        <GoogleAnalytics gaId="G-XYZ" />
       </body>
     </html>
   );
