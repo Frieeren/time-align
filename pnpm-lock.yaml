@@ -436,8 +436,8 @@ importers:
         specifier: ^5.80.7
         version: 5.80.7(@tanstack/react-query@5.80.7(react@19.1.0))(react@19.1.0)
       '@team-frieeren/components':
-        specifier: file:team-frieeren-components-1.0.25.tgz
-        version: file:apps/web/team-frieeren-components-1.0.25.tgz(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: 1.0.14-alpha.49958be.0
+        version: 1.0.14-alpha.49958be.0(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next:
         specifier: ^15.3.0
         version: 15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
@@ -3115,9 +3115,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@team-frieeren/components@file:apps/web/team-frieeren-components-1.0.25.tgz':
-    resolution: {integrity: sha512-yTapg4tOHqH8QPHFFjerDZ7hvygNa5LtbvcJao2Y20mXb1gBU4cRBFMLaH/uyF9SdNLyBScwpFWzsvyCLHp2QA==, tarball: file:apps/web/team-frieeren-components-1.0.25.tgz}
-    version: 1.0.25
+  '@team-frieeren/components@1.0.14-alpha.49958be.0':
+    resolution: {integrity: sha512-z3nKlon8tBZp+mdNk8JFNGltyXLb1yWufd00l9qS2n+mOpeSufQ1I9Ug+ilb1hW9M8d7cEujN4T0sORf9ugnEg==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -10519,7 +10518,7 @@ snapshots:
       '@tanstack/query-core': 5.80.7
       react: 19.1.0
 
-  '@team-frieeren/components@file:apps/web/team-frieeren-components-1.0.25.tgz(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@team-frieeren/components@1.0.14-alpha.49958be.0(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@radix-ui/react-accordion': 1.2.11(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-checkbox': 1.3.2(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

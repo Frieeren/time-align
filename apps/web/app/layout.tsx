@@ -3,7 +3,7 @@ import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
 import "../shared/style/index.css";
 import "@team-frieeren/components/styles.css";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ToastProvider } from "@team-frieeren/components/toast";
 import { AppLogProvider } from "../shared/provider/AppLogProvider";
 
@@ -27,7 +27,10 @@ export default function RootLayout({
             </AppLogProvider>
           </RQProvider>
         </SessionProvider>
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ""} />
+        <GoogleAnalytics
+          debugMode={process.env.NODE_ENV === "development"}
+          gaId={process.env.NEXT_PUBLIC_GA_ID || ""}
+        />
       </body>
     </html>
   );

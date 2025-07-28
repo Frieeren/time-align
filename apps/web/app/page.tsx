@@ -1,11 +1,13 @@
 "use client";
 
-import { Button, LogScreen } from "@team-frieeren/components";
+import { Button, LogScreen, Popup, useToast } from "@team-frieeren/components";
+import { useState } from "react";
 import { css } from "../styled-system/css";
 
 export default function Home() {
+  const [open, setOpen] = useState(false);
   return (
-    <LogScreen logParams={{ screenName: "Home" }}>
+    <LogScreen logParams={{ title: "Home" }}>
       <div
         className={css({
           bg: "blue.100",
@@ -16,7 +18,14 @@ export default function Home() {
         })}
       >
         <h1 className={css({ fontSize: "3xl", fontWeight: "body", color: "primary" })}>Hello, Panda CSS!</h1>
-        <Button>Click me</Button>
+        <Button>Click Button</Button>
+        <Button onClick={() => setOpen(true)}>Click Popup</Button>
+        <Popup
+          open={open}
+          buttonLayoutType="typeA"
+          title="Popup Title"
+          button={<Button onClick={() => setOpen(false)}>Close Popup</Button>}
+        />
       </div>
     </LogScreen>
   );
