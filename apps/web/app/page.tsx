@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, LogScreen, Popup, useToast } from "@team-frieeren/components";
+import { Button, LogScreen, Popup } from "@team-frieeren/components";
 import { useState } from "react";
 import { css } from "../styled-system/css";
 
