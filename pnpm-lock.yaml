@@ -433,8 +433,8 @@ importers:
         specifier: ^5.80.7
         version: 5.80.7(@tanstack/react-query@5.80.7(react@19.1.0))(react@19.1.0)
       '@team-frieeren/components':
-        specifier: ^1.0.13
-        version: 1.0.13(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^1.0.15
+        version: 1.0.15(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next:
         specifier: ^15.3.0
         version: 15.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
@@ -3106,8 +3106,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@team-frieeren/components@1.0.13':
-    resolution: {integrity: sha512-n5zwHERtKZI8kmwJ2xpl9yzgfD0fLvW5U4QCbrtdiXzT6nVptsaposhPtMSqrK3P0+qxR4PGZaqirn5o6s81zQ==}
+  '@team-frieeren/components@1.0.15':
+    resolution: {integrity: sha512-j6/tl6R9Q09zVM1jsZfcWs9Ne7NAzqZSyLST4sjKz73N28saao+bVV5IuH/nIHcTMJaWYVgjo7FsilpiUU20fA==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -10500,7 +10500,7 @@ snapshots:
       '@tanstack/query-core': 5.80.7
       react: 19.1.0
 
-  '@team-frieeren/components@1.0.13(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@team-frieeren/components@1.0.15(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@radix-ui/react-accordion': 1.2.11(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-checkbox': 1.3.2(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
