@@ -1,9 +1,10 @@
-import { ToastProvider } from "@team-frieeren/components";
 import type { Metadata } from "next";
+import BottomNavigation from "../shared/components/BottomNavigation";
 import RQProvider from "../shared/provider/RQProvider";
 import SessionProvider from "../shared/provider/SessionProvider";
 import "../shared/style/index.css";
 import "@team-frieeren/components/styles.css";
+import { css } from "../styled-system/css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,11 +17,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="ko">
+      <body className={css({ bg: "gray.50" })}>
         <SessionProvider>
           <RQProvider>
-            <ToastProvider>{children}</ToastProvider>
+            <main
+              className={css({
+                maxWidth: "768px",
+                mx: "auto",
+                paddingX: "4",
+                pb: "16",
+                minHeight: "100vh",
+                bg: "white",
+              })}
+            >
+              {children}
+            </main>
+            <BottomNavigation />
           </RQProvider>
         </SessionProvider>
       </body>
