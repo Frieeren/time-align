@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <section>
-      <div>Profile</div>
+      <div>Schedule</div>
     </section>
   );
 }
