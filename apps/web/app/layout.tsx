@@ -18,14 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={css({ bg: "gray.50" })}>
+      <body className={css({ bg: "gray.50", fontFamily: "Pretendard" })}>
         <SessionProvider>
           <RQProvider>
             <main
               className={css({
                 maxWidth: "768px",
                 mx: "auto",
-                paddingX: "4",
                 pb: "16",
                 minHeight: "100vh",
                 bg: "white",
