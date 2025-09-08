@@ -5,7 +5,7 @@ export default defineConfig({
   preflight: true,
 
   // Where to look for your css declarations
-  include: ["./app/**/*.{js,jsx,ts,tsx}"],
+  include: ["./shared/components/**/*.{ts,tsx,js,jsx}", "./app/**/*.{ts,tsx,js,jsx}"],
 
   // Files to exclude
   exclude: ["./apps/api/**/*"],
