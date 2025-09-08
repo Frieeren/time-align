@@ -58,6 +58,8 @@ export default function BottomNavigation() {
             base: "space-between", // 모바일
             md: "space-around", // 태블릿
           },
+          boxShadow: "0 -4px 9.2px -1px rgba(0, 0, 0, 0.03)",
+          bg: "white",
         })}
       >
         {NAV_ITEMS.map(item => {
