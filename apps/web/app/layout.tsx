@@ -25,7 +25,7 @@ export default function RootLayout({
               className={css({
                 maxWidth: "768px",
                 mx: "auto",
-                pb: "16",
+                pb: "56px",
                 minHeight: "100vh",
                 bg: "white",
               })}
