@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import { FAB } from "../shared/components/FAB";
+import { ScheduleCard } from "../shared/components/ScheduleCard";
 import { css } from "../styled-system/css";
 import { Calendar } from "./_components/Calendar";
-import { FAB } from "./_components/FAB";
-import { ScheduleCard } from "./_components/ScheduleCard";
 import { Tabs } from "./_components/Tabs";
 import { TopBanner } from "./_components/TopBanner";
 
