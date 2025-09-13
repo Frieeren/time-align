@@ -1,10 +1,10 @@
+import BottomNavigation from "@/shared/components/BottomNavigation";
+import RQProvider from "@/shared/provider/RQProvider";
+import SessionProvider from "@/shared/provider/SessionProvider";
 import type { Metadata } from "next";
-import BottomNavigation from "../shared/components/BottomNavigation";
-import RQProvider from "../shared/provider/RQProvider";
-import SessionProvider from "../shared/provider/SessionProvider";
-import "../shared/style/index.css";
+import { css } from "styled-system/css";
+import "@/shared/style/index.css";
 import "@team-frieeren/components/styles.css";
-import { css } from "../styled-system/css";
 
 export const metadata: Metadata = {
   title: "Time Align",

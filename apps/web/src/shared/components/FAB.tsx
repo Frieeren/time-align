@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { css } from "../../styled-system/css";
+import { css } from "../../../styled-system/css";
 
 export function FAB() {
   return (

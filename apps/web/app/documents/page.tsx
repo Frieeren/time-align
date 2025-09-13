@@ -1,3 +1,4 @@
+import { DocumentsPage } from "@/views/documents";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return (
-    <section>
-      <div>Documents</div>
-    </section>
-  );
+  return <DocumentsPage />;
 }

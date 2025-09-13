@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { css } from "../../styled-system/css";
+import { css } from "styled-system/css";
 
 const TAB_ITEMS = ["check", "message"];
 
