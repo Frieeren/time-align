@@ -1,11 +1,50 @@
+import type { DailySchedule } from "@/model/DailySchedule";
+import type { MeetingSchedule } from "@/model/MeetingSchedule";
 import { FAB } from "@/shared/components/FAB";
-import { ScheduleCard } from "@/shared/components/ScheduleCard";
 import { ScheduleHeader } from "@/widgets/schedule/Header";
 import { ScheduleProgressDivider } from "@/widgets/schedule/ScheduleProgressDivider";
 import { ScheduleProgressItem } from "@/widgets/schedule/ScheduleProgressItem";
 import { Tabs } from "@/widgets/schedule/Tabs";
+import { DailyCard } from "@/widgets/shared/DailyCard";
+import { MeetingCard } from "@/widgets/shared/MeetingCard";
 import Image from "next/image";
 import { css } from "styled-system/css";
+
+const DAILY_SCHEDULE_DATA: DailySchedule[] = [
+  {
+    status: "progress",
+    date: new Date(),
+    title: "MVP 설정 및 공유",
+    project: "은행 신규 서비스",
+    startTime: "09:30",
+    endTime: "10:00",
+    participants: ["프로젝트 전체 팀원"],
+    color: "#FFA600",
+  },
+  {
+    status: "completed",
+    date: new Date(),
+    title: "MVP 설정 및 공유",
+    project: "은행 신규 서비스",
+    startTime: "09:30",
+    endTime: "10:00",
+    participants: ["프로젝트 전체 팀원"],
+    color: "#FFA600",
+  },
+];
+
+const MEETING_SCHEDULE_DATA: MeetingSchedule[] = [
+  {
+    status: "progress",
+    attendanceStatus: "tentative",
+    date: new Date(),
+    title: "어쩌고 회의",
+    project: "은행 신규 서비스",
+    startTime: "09:30",
+    endTime: "10:00",
+    participants: ["프로젝트 전체 팀원"],
+  },
+];
 
 export function SchedulePage() {
   return (
@@ -99,16 +138,16 @@ export function SchedulePage() {
           className={css({
             display: "flex",
             flexDirection: "column",
-            pt: "8px",
+            pt: "12px",
             pb: "24px",
             px: "20px",
             gap: "12px",
             width: "100%",
           })}
         >
-          {Array.from({ length: 3 }).map((_, index) => (
+          {DAILY_SCHEDULE_DATA.map((item, index) => (
             <li key={`schedule-card-${index.toString()}`}>
-              <ScheduleCard />
+              <DailyCard {...item} />
             </li>
           ))}
         </ul>
@@ -139,16 +178,16 @@ export function SchedulePage() {
           className={css({
             display: "flex",
             flexDirection: "column",
-            pt: "8px",
+            pt: "12px",
             pb: "24px",
             px: "20px",
             gap: "12px",
             width: "100%",
           })}
         >
-          {Array.from({ length: 3 }).map((_, index) => (
+          {MEETING_SCHEDULE_DATA.map((item, index) => (
             <li key={`schedule-card-${index.toString()}`}>
-              <ScheduleCard />
+              <MeetingCard {...item} />
             </li>
           ))}
         </ul>
