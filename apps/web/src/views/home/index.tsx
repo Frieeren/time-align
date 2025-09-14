@@ -1,16 +1,22 @@
+"use client";
+
 import type { DailySchedule } from "@/model/DailySchedule";
+import type { MeetingSchedule } from "@/model/MeetingSchedule";
 import { FAB } from "@/shared/components/FAB";
 import { Calendar } from "@/widgets/home/Calendar";
 import { Tabs } from "@/widgets/home/Tabs";
 import { TopBanner } from "@/widgets/home/TopBanner";
 import { DailyCard } from "@/widgets/shared/DailyCard";
+import { MeetingCard } from "@/widgets/shared/MeetingCard";
+import { useState } from "react";
 import { css } from "styled-system/css";
+import { TAB_ITEMS, type TabsState } from "./types";
 
-const DAILY_CARD_DATA: DailySchedule[] = [
+const DAILY_SCHEDULE_DATA: DailySchedule[] = [
   {
     status: "progress",
     date: new Date(),
-    title: "MVP 설정 및 공유 ",
+    title: "MVP 설정 및 공유",
     project: "은행 신규 서비스",
     startTime: "09:30",
     endTime: "10:00",
@@ -20,7 +26,7 @@ const DAILY_CARD_DATA: DailySchedule[] = [
   {
     status: "completed",
     date: new Date(),
-    title: "MVP 설정 및 공유 ",
+    title: "MVP 설정 및 공유",
     project: "은행 신규 서비스",
     startTime: "09:30",
     endTime: "10:00",
@@ -29,7 +35,22 @@ const DAILY_CARD_DATA: DailySchedule[] = [
   },
 ];
 
+const MEETING_SCHEDULE_DATA: MeetingSchedule[] = [
+  {
+    status: "progress",
+    attendanceStatus: "tentative",
+    date: new Date(),
+    title: "어쩌고 회의",
+    project: "은행 신규 서비스",
+    startTime: "09:30",
+    endTime: "10:00",
+    participants: ["프로젝트 전체 팀원"],
+  },
+];
+
 export function HomePage() {
+  const [activeTab, setActiveTab] = useState<TabsState>(TAB_ITEMS.DAILY);
+
   return (
     <section
       className={css({
@@ -39,7 +60,7 @@ export function HomePage() {
     >
       <TopBanner />
       <Calendar />
-      <Tabs />
+      <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <ul
         className={css({
           display: "flex",
@@ -50,11 +71,17 @@ export function HomePage() {
           bg: "#EFF2F5",
         })}
       >
-        {DAILY_CARD_DATA.map((item, index) => (
-          <li key={`schedule-card-${index.toString()}`}>
-            <DailyCard {...item} />
-          </li>
-        ))}
+        {activeTab === TAB_ITEMS.DAILY
+          ? DAILY_SCHEDULE_DATA.map((item, index) => (
+              <li key={`schedule-card-${index.toString()}`}>
+                <DailyCard {...item} />
+              </li>
+            ))
+          : MEETING_SCHEDULE_DATA.map((item, index) => (
+              <li key={`schedule-card-${index.toString()}`}>
+                <MeetingCard {...item} />
+              </li>
+            ))}
       </ul>
       <FAB />
     </section>

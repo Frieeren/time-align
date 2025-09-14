@@ -4,7 +4,6 @@ import SessionProvider from "@/shared/provider/SessionProvider";
 import type { Metadata } from "next";
 import { css } from "styled-system/css";
 import "@/shared/style/index.css";
-import "@team-frieeren/components/styles.css";
 
 export const metadata: Metadata = {
   title: "Time Align",

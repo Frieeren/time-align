@@ -1,14 +1,15 @@
 "use client";
 
+import { TAB_ITEMS, type TabsState } from "@/views/home/types";
 import Image from "next/image";
-import { useState } from "react";
 import { css } from "styled-system/css";
 
-const TAB_ITEMS = ["check", "message"];
+type TabsProps = {
+  activeTab: TabsState;
+  setActiveTab: (tab: TabsState) => void;
+};
 
-export function Tabs() {
-  const [activeTab, setActiveTab] = useState(TAB_ITEMS[0]);
-
+export function Tabs({ activeTab, setActiveTab }: TabsProps) {
   return (
     <ul
       className={css({
@@ -21,7 +22,7 @@ export function Tabs() {
       })}
     >
       <li
-        onClick={() => setActiveTab(TAB_ITEMS[0])}
+        onClick={() => setActiveTab(TAB_ITEMS.DAILY)}
         className={css({
           cursor: "pointer",
           flex: 1,
@@ -34,8 +35,8 @@ export function Tabs() {
         })}
       >
         <Image
-          src={`/icons/check${activeTab === TAB_ITEMS[0] ? "-active" : ""}.png`}
-          alt={TAB_ITEMS[0] as string}
+          src={`/icons/check${activeTab === TAB_ITEMS.DAILY ? "-active" : ""}.png`}
+          alt={TAB_ITEMS.DAILY}
           width={18}
           height={18}
         />
@@ -45,14 +46,14 @@ export function Tabs() {
             lineHeight: "1.4",
             letterSpacing: "-0.28px",
             fontWeight: "400",
-            color: activeTab === TAB_ITEMS[0] ? "black" : "#B7C2D0",
+            color: activeTab === TAB_ITEMS.DAILY ? "black" : "#B7C2D0",
           })}
         >
           Check List
         </p>
       </li>
       <li
-        onClick={() => setActiveTab(TAB_ITEMS[1])}
+        onClick={() => setActiveTab(TAB_ITEMS.MEETING)}
         className={css({
           cursor: "pointer",
           flex: 1,
@@ -65,8 +66,8 @@ export function Tabs() {
         })}
       >
         <Image
-          src={`/icons/message${activeTab === TAB_ITEMS[1] ? "-active" : ""}.png`}
-          alt={TAB_ITEMS[1] as string}
+          src={`/icons/message${activeTab === TAB_ITEMS.MEETING ? "-active" : ""}.png`}
+          alt={TAB_ITEMS.MEETING}
           width={20}
           height={20}
         />
@@ -76,7 +77,7 @@ export function Tabs() {
             lineHeight: "1.4",
             letterSpacing: "-0.28px",
             fontWeight: "400",
-            color: activeTab === TAB_ITEMS[1] ? "black" : "#B7C2D0",
+            color: activeTab === TAB_ITEMS.MEETING ? "black" : "#B7C2D0",
           })}
         >
           Meeting
