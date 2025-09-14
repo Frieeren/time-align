@@ -10,6 +10,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/pages/*": ["src/views/*"],
+      "@/model/*": ["./src/model/*"],
       "@/shared/*": ["./src/shared/*"],
       "@/widgets/*": ["./src/widgets/*"],
     }

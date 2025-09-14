@@ -1,9 +1,33 @@
+import type { DailySchedule } from "@/model/DailySchedule";
 import { FAB } from "@/shared/components/FAB";
-import { ScheduleCard } from "@/shared/components/ScheduleCard";
 import { Calendar } from "@/widgets/home/Calendar";
 import { Tabs } from "@/widgets/home/Tabs";
 import { TopBanner } from "@/widgets/home/TopBanner";
+import { DailyCard } from "@/widgets/shared/DailyCard";
 import { css } from "styled-system/css";
+
+const DAILY_CARD_DATA: DailySchedule[] = [
+  {
+    status: "progress",
+    date: new Date(),
+    title: "MVP 설정 및 공유 ",
+    project: "은행 신규 서비스",
+    startTime: "09:30",
+    endTime: "10:00",
+    participants: ["프로젝트 전체 팀원"],
+    color: "#FFA600",
+  },
+  {
+    status: "completed",
+    date: new Date(),
+    title: "MVP 설정 및 공유 ",
+    project: "은행 신규 서비스",
+    startTime: "09:30",
+    endTime: "10:00",
+    participants: ["프로젝트 전체 팀원"],
+    color: "#FFA600",
+  },
+];
 
 export function HomePage() {
   return (
@@ -26,9 +50,9 @@ export function HomePage() {
           bg: "#EFF2F5",
         })}
       >
-        {Array.from({ length: 5 }).map((_, index) => (
+        {DAILY_CARD_DATA.map((item, index) => (
           <li key={`schedule-card-${index.toString()}`}>
-            <ScheduleCard />
+            <DailyCard {...item} />
           </li>
         ))}
       </ul>
