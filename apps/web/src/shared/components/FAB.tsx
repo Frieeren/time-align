@@ -4,7 +4,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { css } from "../../../styled-system/css";
 
-export function FAB() {
+type FABProps = {
+  onEditClick?: () => void;
+  onFolderClick?: () => void;
+};
+
+export function FAB({ onEditClick, onFolderClick }: FABProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -74,6 +79,7 @@ export function FAB() {
             transition: "transform 0.3s ease-in-out",
             transitionDelay: isOpen ? "0.1s" : "0s",
           })}
+          onClick={onEditClick}
         >
           <Image src="/icons/fab-edit.svg" alt="edit" width={20} height={20} />
         </div>
@@ -92,6 +98,7 @@ export function FAB() {
             transition: "transform 0.3s ease-in-out",
             transitionDelay: isOpen ? "0.1s" : "0s",
           })}
+          onClick={onFolderClick}
         >
           <Image src="/icons/fab-folder.svg" alt="foloder" width={20} height={20} />
         </div>

@@ -1,6 +1,9 @@
+"use client";
+
 import type { DailySchedule } from "@/model/DailySchedule";
 import type { MeetingSchedule } from "@/model/MeetingSchedule";
 import { FAB } from "@/shared/components/FAB";
+import { EditBottomSheet } from "@/widgets/schedule/EditBottomSheet";
 import { ScheduleHeader } from "@/widgets/schedule/Header";
 import { ScheduleProgressDivider } from "@/widgets/schedule/ScheduleProgressDivider";
 import { ScheduleProgressItem } from "@/widgets/schedule/ScheduleProgressItem";
@@ -8,6 +11,7 @@ import { Tabs } from "@/widgets/schedule/Tabs";
 import { DailyCard } from "@/widgets/shared/DailyCard";
 import { MeetingCard } from "@/widgets/shared/MeetingCard";
 import Image from "next/image";
+import { useState } from "react";
 import { css } from "styled-system/css";
 
 const DAILY_SCHEDULE_DATA: DailySchedule[] = [
@@ -47,6 +51,8 @@ const MEETING_SCHEDULE_DATA: MeetingSchedule[] = [
 ];
 
 export function SchedulePage() {
+  const [isOpenEditBottomSheet, setIsOpenEditBottomSheet] = useState(false);
+
   return (
     <section
       className={css({
@@ -193,7 +199,8 @@ export function SchedulePage() {
         </ul>
       </div>
 
-      <FAB />
+      <FAB onEditClick={() => setIsOpenEditBottomSheet(true)} />
+      <EditBottomSheet open={isOpenEditBottomSheet} onClose={() => setIsOpenEditBottomSheet(false)} />
     </section>
   );
 }
