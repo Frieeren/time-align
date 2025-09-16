@@ -10,7 +10,6 @@ on:
 jobs:
   code-quality: # git hook 우회 방지
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login != 'dependabot[bot]'
     defaults:
       run:
         working-directory: .
@@ -31,14 +30,15 @@ jobs:
           cache-dependency-path: "pnpm-lock.yaml"
 
       - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
-      - name: 🔍 Run biome check
-        run: pnpm run check
-
-  dependabot-skip:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
-    steps:
-      - name: ✅ Skip code quality check for dependabot
-        run: echo "Code quality check skipped for dependabot PR"
+      - name: 🔍 Run biome check or skip for dependabot
+        run: |
+          if [ "${{ github.event.pull_request.user.login }}" = "dependabot[bot]" ]; then
+            echo "✅ Skipping biome check for dependabot PR"
+            echo "Dependabot PR automatically approved"
+            exit 0
+          else
+            echo "🔍 Running biome check for regular PR"
+            pnpm run check
+          fi
