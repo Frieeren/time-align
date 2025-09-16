@@ -30,7 +30,7 @@ jobs:
           cache-dependency-path: "pnpm-lock.yaml"
 
       - name: 📦 Install dependencies
-        run: 
+        run: |
           if [ -f "pnpm-lock.yaml" ]; then
             pnpm install --frozen-lockfile
           else
