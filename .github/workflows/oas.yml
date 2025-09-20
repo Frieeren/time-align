@@ -39,18 +39,6 @@ jobs:
         working-directory: apps/api
         run: pnpm run generate:swagger
 
-      - name: Generate documentation (auth-api)
-        working-directory: apps/auth-api
-        run: pnpm run generate:swagger
-
-      - name: Generate documentation (notification-api)
-        working-directory: apps/notification-api
-        run: pnpm run generate:swagger
-
-      - name: Generate documentation (api-gateway)
-        working-directory: apps/api-gateway
-        run: pnpm run generate:swagger
-
       - name: Generate API using Orval
         working-directory: apps/web
         run: pnpm run generate:api
