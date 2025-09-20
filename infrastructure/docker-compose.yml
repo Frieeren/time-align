@@ -1,22 +1,28 @@
-version: "3"
 services:
   nginx:
-    container_name: nginx
+    container_name: time-align-nginx
     image: nginx:stable-otel
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "3002:80" # HTTP
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/html:/var/www/html
       - ./nginx/nginx/logs:/var/log/nginx
-    depends_on:
-      - api-gateway
+    environment:
+      - TZ=Asia/Seoul
+
+  web:
+    container_name: time-align-web
+    build:
+      context: ..
+      dockerfile: infrastructure/DockerFile.web
+    ports:
+      - "3004:3004"
     environment:
       - TZ=Asia/Seoul
 
   api:
+    container_name: time-align-api
     build:
       context: ..
       dockerfile: infrastructure/Dockerfile.api
@@ -35,6 +41,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   db:
+    container_name: time-align-db
     image: mysql:latest
     ports:
       - "${MYSQL_PORT}:3306"
@@ -48,6 +55,7 @@ services:
       - ./mysql/data:/var/lib/mysql
 
   redis:
+    container_name: time-align-redis
     image: redis:latest
     ports:
       - "6379:6379"
