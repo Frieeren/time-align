@@ -12,7 +12,7 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches:
-      - "*"
+      - "main"
     paths:
       - apps/web/.storybook/**
       - apps/web/src/stories/**
