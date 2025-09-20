@@ -1,17 +1,11 @@
-import { css } from "../styled-system/css";
+import { HomePage } from "@/views/home";
+import type { Metadata } from "next";
 
-export default function Home() {
-  return (
-    <div
-      className={css({
-        bg: "blue.100",
-        minH: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      })}
-    >
-      <h1 className={css({ fontSize: "3xl", fontWeight: "body", color: "primary" })}>Hello, Panda CSS!</h1>
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Time Align | 홈",
+  description: "일정관리의 시작, Time Align",
+};
+
+export default function Page() {
+  return <HomePage />;
 }
