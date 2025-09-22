@@ -15,7 +15,6 @@ on:
       - "main"
     paths:
       - apps/web/.storybook/**
-      - apps/web/src/stories/**
       - apps/web/src/shared/components/**
 
 jobs:
@@ -37,11 +36,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version-file: ".node-version"
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install --filter "./apps/web" --no-frozen-lockfile
+        run: pnpm install --filter "./apps/web" --frozen-lockfile
 
       - name: Publish to Chromatic
         id: chromatic
