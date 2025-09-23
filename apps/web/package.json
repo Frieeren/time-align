@@ -12,8 +12,7 @@
     "generate:api": "orval && biome check --fix --unsafe ./shared/api/**/*",
     "prepare": "panda codegen",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_8ea10e0f7fb6dc7"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.80.7",
