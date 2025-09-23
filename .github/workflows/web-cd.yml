@@ -1,0 +1,55 @@
+name: Web CD
+
+env:
+  WORKSPACE_PATH: ${{ secrets.WORKSPACE_PATH }}
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - apps/web/**
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: ${{ env.WORKSPACE_PATH }}/time-align
+    steps:
+      - name: 📦 Checkout Repository
+        run: |          
+          git remote set-head origin --auto
+          DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+          
+          git checkout $DEFAULT_BRANCH
+          git pull origin $DEFAULT_BRANCH
+
+      - name: 📦 Create .env file
+        run: |
+          cd apps/web
+
+          cat > .env << EOF
+          EOF
+
+      - name: 🚀 Deploy
+        run: |
+          cd infrastructure
+          docker compose up -d web --build
+
+      - name: ✅ Health Check
+        run: |
+          echo "Verifying deployment..."
+          cd infrastructure
+          docker compose ps web
+
+          CONTAINER_ID=$(docker compose ps web --status running --quiet)
+
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "✅ Web container is running successfully"
+          else
+            echo "❌ Web container is not running"
+            exit 1
+          fi
