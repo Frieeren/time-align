@@ -1,6 +1,8 @@
+import type { ReactNode } from "react";
+
 export type RadioProps = {
   options: {
-    label: React.ReactNode;
+    label: ReactNode;
     value: string;
   }[];
   defaultValue?: string;
