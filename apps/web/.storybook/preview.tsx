@@ -1,6 +1,6 @@
 import "@/shared/style/index.css";
-
 import type { Preview } from "@storybook/nextjs-vite";
+import React from "react";
 
 const preview: Preview = {
   parameters: {
@@ -18,6 +18,17 @@ const preview: Preview = {
       test: "todo",
     },
   },
+  decorators: [
+    Story => {
+      if (!document.getElementById("toast-portal")) {
+        const portalDiv = document.createElement("div");
+        portalDiv.id = "toast-portal";
+        document.body.appendChild(portalDiv);
+      }
+
+      return <Story />;
+    },
+  ],
 };
 
 export default preview;

@@ -18,6 +18,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.svg",
+    "svgr.d.ts",
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
