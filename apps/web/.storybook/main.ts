@@ -22,5 +22,27 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ["../public"],
+  // biome-ignore lint/suspicious/noExplicitAny:
+  webpackFinal: (config: any) => {
+    const imageRule = config.module.rules.find(rule => {
+      const test = (rule as { test: RegExp }).test;
+
+      if (!test) {
+        return false;
+      }
+
+      return test.test(".svg");
+      // biome-ignore lint/suspicious/noExplicitAny:
+    }) as { [key: string]: any };
+
+    imageRule.exclude = /\.svg$/;
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  },
 };
 export default config;
