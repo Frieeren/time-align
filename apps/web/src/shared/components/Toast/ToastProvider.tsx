@@ -6,9 +6,9 @@ import type { ToastContextValue, ToastOptions, ToastProviderProps, ToastType } f
 
 const defaultToastValue: ToastOptions = {
   type: "default",
-  action: "defualt",
+  action: "default",
   style: {},
-  offest: 0,
+  offset: 0,
   message: "",
   duration: 3000,
   position: "top-right",
@@ -49,7 +49,7 @@ export const ToastProvider = ({ options, children }: ToastProviderProps) => {
         type: toast.type ?? options?.type ?? defaultToastValue.type,
         action: toast.action ?? options?.action ?? defaultToastValue.action,
         style: toast.style ?? options?.style ?? defaultToastValue.style,
-        offest: toast.offest ?? options?.offest ?? defaultToastValue.offest,
+        offset: toast.offset ?? options?.offset ?? defaultToastValue.offset,
         radius: toast.radius ?? options?.radius ?? defaultToastValue.radius,
         message: toast.message ?? options?.message ?? defaultToastValue.message,
         duration: toast.duration ?? options?.duration ?? defaultToastValue.duration,

@@ -37,7 +37,7 @@ export const Toaster = ({ toasts }: { toasts: ToastType[] }) => {
 };
 
 export const Toast = ({ ...toast }: ToastProps) => {
-  const { width, type, action, position, offest, duration, style, message, buttonText, onAction } = toast;
+  const { width, type, action, position, offset, duration, style, message, buttonText, onAction } = toast;
 
   const isMounted = useIsMounted();
   const [visible, setVisible] = useState(false);
@@ -45,10 +45,10 @@ export const Toast = ({ ...toast }: ToastProps) => {
   const positionClass = isTop ? "top" : "bottom";
 
   const offsetStyle = useMemo(() => {
-    const offsetValue = offest;
+    const offsetValue = offset;
 
     return isTop ? { top: `${offsetValue}px` } : { bottom: `${offsetValue}px` };
-  }, [isTop, offest]);
+  }, [isTop, offset]);
 
   useEffect(() => {
     if (isMounted) {
@@ -97,7 +97,7 @@ export const Toast = ({ ...toast }: ToastProps) => {
       </div>
 
       <SwitchCase
-        value={action || "defualt"}
+        value={action || "default"}
         caseBy={{
           "icon-link": (
             <button type="button" className={styles.toastActionLink} onClick={onAction}>

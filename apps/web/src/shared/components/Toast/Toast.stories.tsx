@@ -26,7 +26,7 @@ const meta: Meta<typeof Toast> = {
       <ToastProvider
         options={{
           duration: 3000,
-          offest: 24,
+          offset: 24,
         }}
       >
         <Story />

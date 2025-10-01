@@ -1,12 +1,12 @@
 export type ToastTypes = "default" | "success" | "error" | "warning";
-export type ToastActionTypes = "defualt" | "icon-link" | "icon-button";
+export type ToastActionTypes = "default" | "icon-link" | "icon-button";
 
 export type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
 
 export interface ToastOptions {
   type: ToastTypes;
   action: ToastActionTypes;
-  offest: number;
+  offset: number;
   message: string;
   duration: number;
   position: ToastPosition;
