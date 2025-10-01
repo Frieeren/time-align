@@ -51,11 +51,11 @@ export const Toast = ({ ...toast }: ToastProps) => {
   }, [isTop, offset]);
 
   useEffect(() => {
-    if (isMounted) {
-      requestAnimationFrame(() => {
-        setVisible(true);
-      });
-    }
+    const animation = isMounted
+      ? requestAnimationFrame(() => {
+          setVisible(true);
+        })
+      : null;
 
     const timer = setTimeout(
       () => {
@@ -64,7 +64,12 @@ export const Toast = ({ ...toast }: ToastProps) => {
       duration ? duration - 500 : 300
     );
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (animation !== null) {
+        cancelAnimationFrame(animation);
+      }
+      clearTimeout(timer);
+    };
   }, [isMounted, duration]);
 
   return (
