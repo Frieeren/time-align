@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { OverlayProvider } from "@toss/use-overlay";
-import { useOverlay } from "@toss/use-overlay";
+import { OverlayProvider, overlay } from "overlay-kit";
 import { BottomSheet } from "./BottomSheet";
 
 /**
@@ -62,9 +61,6 @@ export const BottomSheets: Story = {
     radius: "medium",
   },
   render: args => {
-    // eslint-disable-next-line
-    const overlay = useOverlay();
-
     const openNoScrollBottomSheet = () => {
       overlay.open(({ isOpen, close }) => (
         <BottomSheet

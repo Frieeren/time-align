@@ -150,9 +150,6 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: ^5.80.7
         version: 5.80.7(@tanstack/react-query@5.80.7(react@19.1.0))(react@19.1.0)
-      '@toss/use-overlay':
-        specifier: ^1.4.2
-        version: 1.4.2(react@19.1.0)
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -162,6 +159,9 @@ importers:
       next-auth:
         specifier: 5.0.0-beta.28
         version: 5.0.0-beta.28(next@15.3.0(@babel/core@7.28.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2))(react@19.1.0)
+      overlay-kit:
+        specifier: ^1.8.6
+        version: 1.8.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3218,12 +3218,6 @@ packages:
   '@tootallnate/once@1.1.2':
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
     engines: {node: '>= 6'}
-
-  '@toss/use-overlay@1.4.2':
-    resolution: {integrity: sha512-OYJKSKkldho8qrJR0xMJLpz85H68+E+y6H3y/N0XUed/b0ytbfU+fuxcPd14uiC8H0xzliTGBlY8GQP9Z/lteQ==}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
-    peerDependencies:
-      react: ^16.8 || ^17 || ^18
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -6706,6 +6700,12 @@ packages:
 
   outvariant@1.4.3:
     resolution: {integrity: sha512-+Sl2UErvtsoajRDKCE5/dBz4DIvHXQQnAxtQTF04OJxY0+DyZXSo5P5Bb7XYWOh81syohlYL24hbDwxedPUJCA==}
+
+  overlay-kit@1.8.6:
+    resolution: {integrity: sha512-0JeZ+QcoMCEgW4OndzCJger/eHZHGan7M9iQ6sHxrMPVwLyqSN8665CdciNrNjzorV3xGtqVeZUs2o4rt4ddYw==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19
+      react-dom: ^16.8 || ^17 || ^18 || ^19
 
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
@@ -12805,10 +12805,6 @@ snapshots:
   '@tootallnate/once@1.1.2':
     optional: true
 
-  '@toss/use-overlay@1.4.2(react@19.1.0)':
-    dependencies:
-      react: 19.1.0
-
   '@trysound/sax@0.2.0': {}
 
   '@ts-morph/common@0.25.0':
@@ -16910,6 +16906,11 @@ snapshots:
   outdent@0.8.0: {}
 
   outvariant@1.4.3: {}
+
+  overlay-kit@1.8.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   own-keys@1.0.1:
     dependencies:
