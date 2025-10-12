@@ -50,7 +50,7 @@ export const 비밀번호_입력: Story = {
     const [password, setPassword] = React.useState("");
 
     return (
-      <div style={{ width: "360px", display: "flex", flexDirection: "column", gap: "12px" }}>
+      <div style={{ width: "360px", display: "flex", flexDirection: "column", gap: "36px" }}>
         <TextField
           type="password"
           label="비밀번호"
