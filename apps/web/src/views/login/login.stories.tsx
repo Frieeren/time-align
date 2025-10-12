@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import React from "react";
 import { LoginPage } from ".";
+import { Button } from "./components/Button";
 import { SNSLoginButton } from "./components/SNSLoginButton";
 import { TextField } from "./components/TextField";
 
@@ -87,4 +88,15 @@ export const 비밀번호_입력: Story = {
       </div>
     );
   },
+};
+
+// 로그인 버튼
+export const 로그인_버튼: Story = {
+  args: {},
+  render: () => (
+    <div style={{ width: "360px", display: "flex", flexDirection: "column", gap: "12px" }}>
+      <Button label="로그인" />
+      <Button label="로그인" disabled />
+    </div>
+  ),
 };
