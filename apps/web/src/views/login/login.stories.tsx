@@ -52,7 +52,7 @@ export const 이메일_주소_입력: Story = {
           placeholder="abcdef@naver.com"
           value={email}
           onChange={setEmail}
-          error="올바른 이메일 형식이 아닙니다."
+          error="잘못된 이메일 주소입니다."
           validate={value => {
             // 빈 값이거나 유효한 이메일 형식인지 확인
             if (value.length === 0) return true;
@@ -76,13 +76,14 @@ export const 비밀번호_입력: Story = {
         <TextField
           type="password"
           label="비밀번호"
+          placeholder="8~16자리 영대•소문자, 숫자, 특수문자 조합"
           value={password}
           onChange={setPassword}
           error="잘못된 비밀번호입니다."
           validate={value => {
-            // 빈 값이거나 8자 이상인지 확인
+            // 8~16자리 영대•소문자, 숫자, 특수문자 조합
             if (value.length === 0) return true;
-            return value.length >= 8;
+            return value.length >= 8 && value.length <= 16;
           }}
         />
       </div>
