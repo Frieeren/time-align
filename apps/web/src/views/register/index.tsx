@@ -1,6 +1,6 @@
 "use client";
 
-export function LoginPage() {
+export function RegisterPage() {
   return (
     <div
       style={{
@@ -11,7 +11,7 @@ export function LoginPage() {
         height: "100vh",
       }}
     >
-      <div>Login</div>
+      <div>Register</div>
     </div>
   );
 }
