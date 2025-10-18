@@ -101,3 +101,64 @@ export const 로그인_버튼: Story = {
     </div>
   ),
 };
+
+export const 통합_에러_메세지: Story = {
+  args: {},
+  render: () => {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    const getErrorMessage = () => {
+      if (!email || !password) return null;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) return "잘못된 이메일 주소입니다.";
+
+      if (password.length < 8 || password.length > 16) return "잘못된 비밀번호 입니다.";
+
+      return null;
+    };
+
+    return (
+      <div style={{ width: "360px", display: "flex", flexDirection: "column", gap: "16px" }}>
+        <TextField
+          type="text"
+          label="이메일 주소"
+          placeholder="abcdef@naver.com"
+          value={email}
+          onChange={setEmail}
+          validate={value => {
+            // 빈 값이거나 유효한 이메일 형식인지 확인
+            if (value.length === 0) return true;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(value);
+          }}
+        />
+        <TextField
+          type="password"
+          label="비밀번호"
+          placeholder="8~16자리 영대•소문자, 숫자, 특수문자 조합"
+          value={password}
+          onChange={setPassword}
+          validate={value => {
+            // 8~16자리 영대•소문자, 숫자, 특수문자 조합
+            if (value.length === 0) return true;
+            return value.length >= 8 && value.length <= 16;
+          }}
+        />
+        <div
+          style={{
+            color: "#E52929",
+            fontSize: "12px",
+            fontWeight: "500",
+            lineHeight: "140%",
+            letterSpacing: "-0.24px",
+          }}
+        >
+          {getErrorMessage()}
+        </div>
+        <Button label="로그인" />
+      </div>
+    );
+  },
+};
