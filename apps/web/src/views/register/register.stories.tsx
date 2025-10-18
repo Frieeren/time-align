@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { RegisterPage } from ".";
 import { TextField } from "../login/components/TextField";
@@ -130,95 +129,6 @@ export const 탑바: Story = {
             </button>,
           ]}
           title="회원가입"
-        />
-      </div>
-    );
-  },
-};
-
-export const 아이디_찾기_비밀번호_찾기_회원가입: Story = {
-  args: {},
-  render: () => {
-    return (
-      <div style={{ width: "360px", display: "flex", flexDirection: "row", gap: "10px", alignItems: "center" }}>
-        <Link
-          style={{
-            color: "#111",
-            fontSize: "12px",
-            fontStyle: "normal",
-            fontWeight: "500",
-            lineHeight: "140%",
-            letterSpacing: "-0.24px",
-          }}
-          href="https://google.com"
-        >
-          아이디 찾기
-        </Link>
-        <div style={{ width: "1px", height: "11px", backgroundColor: "#D9D9D9" }} />
-        <Link
-          style={{
-            color: "#111",
-            fontSize: "12px",
-            fontStyle: "normal",
-            fontWeight: "500",
-            lineHeight: "140%",
-            letterSpacing: "-0.24px",
-          }}
-          href="https://google.com"
-        >
-          비밀번호 찾기
-        </Link>
-        <div style={{ width: "1px", height: "11px", backgroundColor: "#D9D9D9" }} />
-        <Link
-          style={{
-            color: "#111",
-            fontSize: "12px",
-            fontStyle: "normal",
-            fontWeight: "500",
-            lineHeight: "140%",
-            letterSpacing: "-0.24px",
-          }}
-          href="https://google.com"
-        >
-          회원가입
-        </Link>
-      </div>
-    );
-  },
-};
-
-export const SNS_계정으로_로그인: Story = {
-  args: {},
-  render: () => {
-    return (
-      <div style={{ width: "360px", display: "flex", flexDirection: "row", gap: "12px", alignItems: "center" }}>
-        <div
-          style={{
-            width: "100%",
-            height: "1px",
-            backgroundColor: "#D9D9D9",
-          }}
-        />
-        <div
-          style={{
-            color: "#A7A7A7",
-            fontSize: "12px",
-            fontStyle: "normal",
-            fontWeight: "500",
-            lineHeight: "140%",
-            letterSpacing: "-0.24px",
-            textAlign: "center",
-            minWidth: "fit-content",
-          }}
-        >
-          SNS 계정으로 로그인
-        </div>
-        <div
-          style={{
-            width: "100%",
-            height: "1px",
-            backgroundColor: "#D9D9D9",
-          }}
         />
       </div>
     );
