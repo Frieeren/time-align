@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import Image from "next/image";
 import React from "react";
 import { RegisterPage } from ".";
 import { TextField } from "../login/components/TextField";
+import { TopBar } from "./components/TopBar";
 
 const meta = {
   title: "v2/Views/Register",
@@ -103,6 +105,24 @@ export const 닉네임: Story = {
             if (value.length === 0) return true;
             return value.length >= 6;
           }}
+        />
+      </div>
+    );
+  },
+};
+
+export const 탑바: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div style={{ width: "360px" }}>
+        <TopBar
+          leftActions={[
+            <button type="button" key="뒤로가기" style={{ cursor: "pointer" }}>
+              <Image src="/icons/components/arrow-left-black.png" alt="뒤로가기" width={24} height={24} />
+            </button>,
+          ]}
+          title="회원가입"
         />
       </div>
     );
