@@ -1,3 +1,4 @@
+import BottomNavigation from "@/shared/components/BottomNavigation";
 import { FloatingActionButton } from "@/shared/components/FloatingActionButton/FloatingActionButton";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import React from "react";
@@ -55,6 +56,17 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Navigation_Bar: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div style={{ width: "360px", height: "360px" }}>
+        <BottomNavigation />
+      </div>
+    );
+  },
+};
 
 export const FAB_버튼: Story = {
   args: {},
