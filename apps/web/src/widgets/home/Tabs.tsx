@@ -2,7 +2,7 @@
 
 import { TAB_ITEMS, type TabsState } from "@/views/home/types";
 import Image from "next/image";
-import { css } from "styled-system/css";
+import { css } from "../../../styled-system/css";
 
 type TabsProps = {
   activeTab: TabsState;
@@ -49,7 +49,7 @@ export function Tabs({ activeTab, setActiveTab }: TabsProps) {
             color: activeTab === TAB_ITEMS.DAILY ? "black" : "#B7C2D0",
           })}
         >
-          Check List
+          일일 업무
         </p>
       </li>
       <li
@@ -80,7 +80,7 @@ export function Tabs({ activeTab, setActiveTab }: TabsProps) {
             color: activeTab === TAB_ITEMS.MEETING ? "black" : "#B7C2D0",
           })}
         >
-          Meeting
+          회의 일정
         </p>
       </li>
     </ul>

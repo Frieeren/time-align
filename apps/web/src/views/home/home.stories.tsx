@@ -1,8 +1,10 @@
 import BottomNavigation from "@/shared/components/BottomNavigation";
 import { FloatingActionButton } from "@/shared/components/FloatingActionButton/FloatingActionButton";
+import { Tabs } from "@/widgets/home/Tabs";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import React from "react";
+import React, { useState } from "react";
 import { HomePage } from ".";
+import { TAB_ITEMS, type TabsState } from "./types";
 
 const OpenIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
@@ -81,6 +83,19 @@ export const FAB_버튼: Story = {
           right={16}
           actions={[{ icon: <FileIcon /> }, { icon: <AddIcon /> }]}
         />
+      </div>
+    );
+  },
+};
+
+export const 탭: Story = {
+  args: {},
+  render: () => {
+    const [activeTab, setActiveTab] = useState<TabsState>(TAB_ITEMS.DAILY);
+
+    return (
+      <div style={{ width: "360px", height: "360px" }}>
+        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
     );
   },
