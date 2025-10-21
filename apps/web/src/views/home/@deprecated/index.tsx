@@ -52,25 +52,11 @@ export function HomePage() {
   const [activeTab, setActiveTab] = useState<TabsState>(TAB_ITEMS.DAILY);
 
   return (
-    <section
-      className={css({
-        display: "flex",
-        flexDirection: "column",
-      })}
-    >
+    <section className="flex flex-col">
       <TopBanner />
       <Calendar />
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <ul
-        className={css({
-          display: "flex",
-          flexDirection: "column",
-          py: "18px",
-          px: "22px",
-          gap: "12px",
-          bg: "#EFF2F5",
-        })}
-      >
+      <ul className="flex flex-col py-[18px] px-[22px] gap-[12px] bg-[#EFF2F5]">
         {activeTab === TAB_ITEMS.DAILY
           ? DAILY_SCHEDULE_DATA.map((item, index) => (
               <li key={`schedule-card-${index.toString()}`}>
