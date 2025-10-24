@@ -46,15 +46,13 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --filter "./apps/web" --frozen-lockfile
 
-      - name: Generate Panda CSS
-        run: cd apps/web && pnpm run panda:codegen
-
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
           workingDir: apps/web
+          buildScriptName: build-storybook
 
       - name: Add Storybook URL Comment
         uses: thollander/actions-comment-pull-request@v1
