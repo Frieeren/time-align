@@ -10,7 +10,7 @@
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit",
     "generate:api": "orval && biome check --fix --unsafe ./shared/api/**/*",
-    "prepare": "panda codegen",
+    "postinstall": "panda codegen",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
