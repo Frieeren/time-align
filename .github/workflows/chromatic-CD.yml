@@ -16,6 +16,10 @@ on:
     paths:
       - apps/web/.storybook/**
       - apps/web/src/shared/components/**
+      - apps/web/src/widgets/**
+      - apps/web/src/views/**
+      - apps/web/panda.config.ts
+      - apps/web/package.json
 
 jobs:
   chromatic-deployment:
@@ -41,6 +45,9 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --filter "./apps/web" --frozen-lockfile
+
+      - name: Generate Panda CSS
+        run: cd apps/web && pnpm run panda:codegen
 
       - name: Publish to Chromatic
         id: chromatic
