@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { css, cx } from "../../../../styled-system/css";
 import type { FloatingActionButtonProps } from "./FloatingActionButton.type";
 
 export function FloatingActionButton({
@@ -28,19 +27,17 @@ export function FloatingActionButton({
 
   return (
     <div
-      className={cx(
-        css({
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }),
-        className
-      )}
-      style={style}
+      className={className}
+      style={{
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...style,
+      }}
     >
       <button
-        className={css({
+        style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -50,7 +47,7 @@ export function FloatingActionButton({
           cursor: "pointer",
           border: "none",
           backgroundColor: "#3A8DFF",
-        })}
+        }}
         disabled={disabled}
         type="button"
         onClick={() => {
@@ -61,7 +58,7 @@ export function FloatingActionButton({
         {isOpen ? (closeIcon ?? icon) : (openIcon ?? icon)}
       </button>
       <div
-        className={css({
+        style={{
           position: "absolute",
           display: "flex",
           flexDirection: "column",
@@ -71,7 +68,7 @@ export function FloatingActionButton({
           transition: "all 0.3s ease-in-out",
           opacity: isOpen ? 1 : 0,
           visibility: isOpen ? "visible" : "hidden",
-        })}
+        }}
       >
         {actions?.map((action, index) => (
           <div
@@ -83,7 +80,7 @@ export function FloatingActionButton({
             }}
           >
             <button
-              className={css({
+              style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -94,11 +91,7 @@ export function FloatingActionButton({
                 border: "none",
                 backgroundColor: "#ffffff",
                 boxShadow: "0 0 5.6px 0 rgba(0, 0, 0, 0.04)",
-                _hover: {
-                  backgroundColor: "#ebf4ff",
-                  transition: "background-color 0.2s ease-in-out",
-                },
-              })}
+              }}
               disabled={action.disabled}
               type="button"
               onClick={() => {
