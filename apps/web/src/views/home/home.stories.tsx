@@ -1,9 +1,9 @@
-import BottomNavigation from "@/shared/components/BottomNavigation";
-import { FloatingActionButton } from "@/shared/components/FloatingActionButton/FloatingActionButton";
-import { Tabs } from "@/widgets/home/Tabs";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import React, { useState } from "react";
 import { HomePage } from ".";
+import BottomNavigation from "./components/BottomNavigation";
+import { FloatingActionButton } from "./components/FloatingActionButton";
+import { Tabs } from "./components/Tabs";
 import { TAB_ITEMS, type TabsState } from "./types";
 
 const OpenIcon = () => (
