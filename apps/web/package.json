@@ -13,7 +13,7 @@
     "panda:codegen": "panda codegen",
     "postinstall": "pnpm run panda:codegen",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "pnpm run panda:codegen && storybook build"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.16",

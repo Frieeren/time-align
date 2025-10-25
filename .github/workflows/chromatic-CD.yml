@@ -16,10 +16,6 @@ on:
     paths:
       - apps/web/.storybook/**
       - apps/web/src/shared/components/**
-      - apps/web/src/widgets/**
-      - apps/web/src/views/**
-      - apps/web/panda.config.ts
-      - apps/web/package.json
 
 jobs:
   chromatic-deployment:
@@ -52,7 +48,6 @@ jobs:
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
           workingDir: apps/web
-          buildScriptName: build-storybook
 
       - name: Add Storybook URL Comment
         uses: thollander/actions-comment-pull-request@v1
