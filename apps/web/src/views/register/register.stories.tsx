@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import Image from "next/image";
 import React from "react";
 import { RegisterPage } from ".";
 import { TextField } from "../login/components/TextField";
+import { TopBar } from "./components/TopBar";
 
 const meta = {
   title: "v2/Views/Register",
@@ -37,6 +39,8 @@ export const 이메일_주소_입력: Story = {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(value);
           }}
+          useValidationStatus
+          useResetButton
         />
       </div>
     );
@@ -48,6 +52,7 @@ export const 비밀번호_입력: Story = {
   args: {},
   render: () => {
     const [password, setPassword] = React.useState("");
+    const [passwordConfirm, setPasswordConfirm] = React.useState("");
 
     return (
       <div style={{ width: "360px", display: "flex", flexDirection: "column", gap: "36px" }}>
@@ -63,13 +68,14 @@ export const 비밀번호_입력: Story = {
             if (value.length === 0) return true;
             return value.length >= 8 && value.length <= 16;
           }}
+          useValidationStatus
         />
         <TextField
           type="password"
           placeholder="8~16자리 영대•소문자, 숫자, 특수문자 조합"
           label="비밀번호 확인"
-          value={password}
-          onChange={setPassword}
+          value={passwordConfirm}
+          onChange={setPasswordConfirm}
           error="비밀번호가 일치하지 않습니다."
           validate={value => {
             // 빈 값이거나 비밀번호와 일치하는지 확인
@@ -77,6 +83,7 @@ export const 비밀번호_입력: Story = {
             if (value !== password) return false;
             return true;
           }}
+          useValidationStatus
         />
       </div>
     );
@@ -103,6 +110,25 @@ export const 닉네임: Story = {
             if (value.length === 0) return true;
             return value.length >= 6;
           }}
+          useValidationStatus
+        />
+      </div>
+    );
+  },
+};
+
+export const 탑바: Story = {
+  args: {},
+  render: () => {
+    return (
+      <div style={{ width: "360px" }}>
+        <TopBar
+          leftActions={[
+            <button type="button" key="뒤로가기" style={{ cursor: "pointer" }}>
+              <Image src="/icons/components/arrow-left-black.png" alt="뒤로가기" width={24} height={24} />
+            </button>,
+          ]}
+          title="회원가입"
         />
       </div>
     );
